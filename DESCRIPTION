@@ -1,0 +1,14 @@
+Package: mlmc
+Type: Package
+Title: Multi-level Monte Carlo
+Version: 0.1.0
+Authors@R: c(
+    person("Louis", "Aslett", email = "aslett@stats.ox.ac.uk", role = c("cre", "aut", "trl")),
+    person("Tigran", "Nagapetyan", email = "nagapetyan@stats.ox.ac.uk", role = "ctb"),
+    person("Sebastian", "Vollmer", email = "vollmer@stats.ox.ac.uk", role = "ctb"))
+Maintainer: Louis Aslett <aslett@stats.ox.ac.uk>
+Description: An implementation of Multi-level Monte Carlo for R.
+Imports: ggplot2
+License: GPL-2
+LazyData: TRUE
+RoxygenNote: 5.0.1

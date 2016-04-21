@@ -12,6 +12,7 @@
 #'   \item{\code{"cost"} = \eqn{log_10} of cost against \eqn{log_10} of epsilon (accuracy).}{}
 #' }
 #' @param cols the number of columns across to plot to override the default value.
+#' @param ... additional arguments which are passed on to plotting functions.
 #'
 #' @author Louis Aslett <aslett@stats.ox.ac.uk>
 #'
@@ -27,7 +28,7 @@
 #'
 #' @importFrom ggplot2 ggplot aes geom_point geom_line xlab ylab scale_x_log10 scale_y_log10 annotation_logticks
 #' @export
-plot.mlmc.test <- function(x, which="all", cols=NA) {
+plot.mlmc.test <- function(x, which="all", cols=NA, ...) {
   if(length(which)==1 && which=="all") {
     which <- c("var", "mean", "consis", "kurt", "Nl", "cost")
   }

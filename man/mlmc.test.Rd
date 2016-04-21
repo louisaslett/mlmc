@@ -27,6 +27,9 @@ for any subsequent levels which are automatically added.  Must be
 \item{Lmax}{the maximum level of refinement.  Must be \eqn{\ge} Lmin.}
 
 \item{silent}{set to TRUE to supress running output (identical output can still be printed by printing the return result)}
+
+\item{...}{additional arguments which are passed on when the user supplied
+\code{mlmc_l} function is called}
 }
 \value{
 An \code{mlmc.test} object which contains all the computed diagnostic values.  This object can be printed or plotted (see \code{\link{plot.mlmc.test}}).

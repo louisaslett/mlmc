@@ -2,7 +2,7 @@
 % Please edit documentation in R/opre_l.R
 \name{opre_l}
 \alias{opre_l}
-\title{Financial options}
+\title{Financial options using an Euler-Maruyama discretisation}
 \usage{
 opre_l(l, N, option)
 }
@@ -16,11 +16,13 @@ opre_l(l, N, option)
   \item{2 = Asian call;}{}
   \item{3 = lookback call;}{}
   \item{4 = digital call;}{}
-  \item{5 = Heston call.}{}
+  \item{5 = Heston model.}{}
 }}
 }
 \description{
-Financial options based on scalar geometric Brownian motion and Heston models.
+Financial options based on scalar geometric Brownian motion and Heston models,
+similar to Mike Giles' original 2008 Operations Research paper, using an
+Euler-Maruyama discretisation
 }
 \details{
 This function is based on GPL-2 Matlab code by Mike Giles.

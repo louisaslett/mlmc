@@ -42,11 +42,11 @@
 #' @author Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 #'
 #' @references
-#' M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607–617, 2008.
+#' M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607-617, 2008.
 #'
 #' M.B. Giles. Multilevel Monte Carlo methods. \emph{Acta Numerica}, 24:259-328, 2015.
 #'
-#' S. Heinrich. Monte Carlo complexity of global solution of integral equations. \emph{Journal of Complexity}, 14(2):151–175, 1998.
+#' S. Heinrich. Monte Carlo complexity of global solution of integral equations. \emph{Journal of Complexity}, 14(2):151-175, 1998.
 #'
 #' @param Lmin the minimum level of refinement.  Must be \eqn{\ge 2}.
 #' @param Lmax the maximum level of refinement.  Must be \eqn{\ge} Lmin.
@@ -61,6 +61,8 @@
 #' @param beta the variance, \eqn{O(2^{-beta*l})}.  If \code{NA} then
 #'   \code{beta} will be estimated.
 #' @param gamma the sample cost, \eqn{O(2^{gamma*l})}.  Must be \eqn{> 0}.
+#' @param ... additional arguments which are passed on when the user supplied
+#'   \code{mlmc_l} function is called
 #'
 #' @return A list containing: \describe{
 #'   \item{\code{P}}{The MLMC estimate;}

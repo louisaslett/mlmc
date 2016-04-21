@@ -27,6 +27,9 @@ l}
 \code{beta} will be estimated.}
 
 \item{gamma}{the sample cost, \eqn{O(2^{gamma*l})}.  Must be \eqn{> 0}.}
+
+\item{...}{additional arguments which are passed on when the user supplied
+\code{mlmc_l} function is called}
 }
 \value{
 A list containing: \describe{
@@ -77,10 +80,10 @@ Louis Aslett <aslett@stats.ox.ac.uk>
 Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 }
 \references{
-M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607–617, 2008.
+M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607-617, 2008.
 
 M.B. Giles. Multilevel Monte Carlo methods. \emph{Acta Numerica}, 24:259-328, 2015.
 
-S. Heinrich. Monte Carlo complexity of global solution of integral equations. \emph{Journal of Complexity}, 14(2):151–175, 1998.
+S. Heinrich. Monte Carlo complexity of global solution of integral equations. \emph{Journal of Complexity}, 14(2):151-175, 1998.
 }
 

@@ -13,9 +13,11 @@ mu <- function(x, h) {
          ((1-exp(-5*h))/h)*(0.04-x[2,]))
 }
 
-#' Financial options
+#' Financial options using an Euler-Maruyama discretisation
 #'
-#' Financial options based on scalar geometric Brownian motion and Heston models.
+#' Financial options based on scalar geometric Brownian motion and Heston models,
+#' similar to Mike Giles' original 2008 Operations Research paper, using an
+#' Euler-Maruyama discretisation
 #'
 #' This function is based on GPL-2 Matlab code by Mike Giles.
 #'
@@ -26,7 +28,7 @@ mu <- function(x, h) {
 #'   \item{2 = Asian call;}{}
 #'   \item{3 = lookback call;}{}
 #'   \item{4 = digital call;}{}
-#'   \item{5 = Heston call.}{}
+#'   \item{5 = Heston model.}{}
 #' }
 #'
 #' @author Louis Aslett <aslett@stats.ox.ac.uk>
@@ -185,13 +187,13 @@ opre_l <- function(l, N, option) {
       Xc <- Xf
 
       if(l==0) {
-        dWf <- sqrt(hf)*randn(2,N2)
+        dWf <- sqrt(hf)*rnorm(N2)
         Xf  <- Xf + mu(Xf,hf)*hf + sig_dW(Xf,dWf,hf)
       } else {
         for(n in 1:nc) {
           dWc <- matrix(0, nrow=2, ncol=N2)
           for(m in 1:M) {
-            dWf <- sqrt(hf)*randn(2,N2)
+            dWf <- sqrt(hf)*rnorm(N2)
             dWc <- dWc + dWf
             Xf  <- Xf + mu(Xf,hf)*hf + sig_dW(Xf,dWf,hf)
           }

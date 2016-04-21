@@ -1,5 +1,5 @@
 #' @export
-print.mlmc.test <- function(x) {
+print.mlmc.test <- function(x, ...) {
   with(x, {
     cat("\n")
     cat("**********************************************************\n")

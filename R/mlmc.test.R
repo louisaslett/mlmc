@@ -22,6 +22,8 @@
 #' @param Lmin the minimum level of refinement.  Must be \eqn{\ge 2}.
 #' @param Lmax the maximum level of refinement.  Must be \eqn{\ge} Lmin.
 #' @param silent set to TRUE to supress running output (identical output can still be printed by printing the return result)
+#' @param ... additional arguments which are passed on when the user supplied
+#'   \code{mlmc_l} function is called
 #'
 #' @return An \code{mlmc.test} object which contains all the computed diagnostic values.  This object can be printed or plotted (see \code{\link{plot.mlmc.test}}).
 #'

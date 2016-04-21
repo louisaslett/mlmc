@@ -4,7 +4,7 @@
 \alias{plot.mlmc.test}
 \title{Plot an \code{mlmc.test} object}
 \usage{
-\method{plot}{mlmc.test}(x, which = "all", cols = NA)
+\method{plot}{mlmc.test}(x, which = "all", cols = NA, ...)
 }
 \arguments{
 \item{x}{an \code{mlmc.test} object as produced by a call to the \code{\link{mlmc.test}} function.}
@@ -19,6 +19,8 @@
 }}
 
 \item{cols}{the number of columns across to plot to override the default value.}
+
+\item{...}{additional arguments which are passed on to plotting functions.}
 }
 \description{
 Produces diagnostic plots on the result of an \code{\link{mlmc.test}} function call.

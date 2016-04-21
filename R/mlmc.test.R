@@ -38,6 +38,13 @@
 #'                  Lmin=2, Lmax=6, option=1)
 #' tst
 #' plot(tst)
+#'
+#' tst <- mlmc.test(mcqmc06_l, M=2, N=20000,
+#'                  L=8, N0=200,
+#'                  eps.v=c(0.005, 0.01, 0.02, 0.05, 0.1),
+#'                  Lmin=2, Lmax=10, option=1)
+#' tst
+#' plot(tst)
 #' }
 #'
 #' @export

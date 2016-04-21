@@ -8,7 +8,10 @@ Authors@R: c(
     person("Sebastian", "Vollmer", email = "vollmer@stats.ox.ac.uk", role = "ctb"))
 Maintainer: Louis Aslett <aslett@stats.ox.ac.uk>
 Description: An implementation of Multi-level Monte Carlo for R.
-Imports: ggplot2
+Imports: ggplot2,
+    Rcpp,
+    grid
 License: GPL-2
 LazyData: TRUE
 RoxygenNote: 5.0.1
+LinkingTo: Rcpp

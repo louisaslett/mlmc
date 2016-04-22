@@ -1,7 +1,7 @@
 Package: mlmc
 Type: Package
 Title: Multi-level Monte Carlo
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: c(
     person("Louis", "Aslett", email = "aslett@stats.ox.ac.uk", role = c("cre", "aut", "trl")),
     person("Tigran", "Nagapetyan", email = "nagapetyan@stats.ox.ac.uk", role = "ctb"),

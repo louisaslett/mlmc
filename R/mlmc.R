@@ -118,7 +118,7 @@ mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha=NA, beta=NA, gamma, parallel
       par.vars <- data.frame(l=0:L, dNl=dNl)[!(dNl==0),]
       sums <- mcmapply(function(l, dNl, ...) {
         mlmc_l(l, dNl, ...)
-      }, l = par.vars$l, dNl = par.vars$dNl, ..., mc.cores = parallel)
+      }, l = par.vars$l, dNl = par.vars$dNl, ..., mc.preschedule = FALSE, mc.cores = parallel)
       Nl <- Nl+dNl
       suml[,!(dNl==0)] <- suml[,!(dNl==0)] + sums[1:2,]
     }

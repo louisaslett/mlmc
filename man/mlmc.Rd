@@ -4,7 +4,8 @@
 \alias{mlmc}
 \title{Multi-level Monte Carlo estimation}
 \usage{
-mlmc(Lmin, Lmax, N0, eps, mlmc_l, alpha = NA, beta = NA, gamma, ...)
+mlmc(Lmin, Lmax, N0, eps, mlmc_l, alpha = NA, beta = NA, gamma,
+  parallel = NA, ...)
 }
 \arguments{
 \item{Lmin}{the minimum level of refinement.  Must be \eqn{\ge 2}.}
@@ -27,6 +28,9 @@ l}
 \code{beta} will be estimated.}
 
 \item{gamma}{the sample cost, \eqn{O(2^{gamma*l})}.  Must be \eqn{> 0}.}
+
+\item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel
+processes an compute each level estimate in parallel.}
 
 \item{...}{additional arguments which are passed on when the user supplied
 \code{mlmc_l} function is called}

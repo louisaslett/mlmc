@@ -22,6 +22,8 @@
 #' @param Lmin the minimum level of refinement.  Must be \eqn{\ge 2}.
 #' @param Lmax the maximum level of refinement.  Must be \eqn{\ge} Lmin.
 #' @param silent set to TRUE to supress running output (identical output can still be printed by printing the return result)
+#' @param parallel if an integer is supplied, R will fork \code{parallel} parallel
+#'   processes an compute each level estimate in parallel.
 #' @param ... additional arguments which are passed on when the user supplied
 #'   \code{mlmc_l} function is called
 #'
@@ -48,7 +50,7 @@
 #' }
 #'
 #' @export
-mlmc.test <- function(mlmc_l, M, N, L, N0, eps.v, Lmin, Lmax, silent=FALSE, ...) {
+mlmc.test <- function(mlmc_l, M, N, L, N0, eps.v, Lmin, Lmax, parallel=NA, silent=FALSE, ...) {
   if(silent)
     cat <- function(...) { }
 
@@ -138,7 +140,7 @@ mlmc.test <- function(mlmc_l, M, N, L, N0, eps.v, Lmin, Lmax, silent=FALSE, ...)
     P <- mlmc_cost <- std_cost <- c()
     Nl <- list()
     for(i in 1:length(eps.v)) {
-      mlmcres <- mlmc(Lmin, Lmax, N0, eps.v[i], mlmc_l, alpha, beta, gamma2, ...)
+      mlmcres <- mlmc(Lmin, Lmax, N0, eps.v[i], mlmc_l, alpha, beta, gamma2, parallel, ...)
       P <- c(P, mlmcres$P)
       Nl[[i]] <- mlmcres$Nl
       l <- length(Nl[[i]])-1

@@ -4,7 +4,8 @@
 \alias{mlmc.test}
 \title{Multi-level Monte Carlo estimation test suite}
 \usage{
-mlmc.test(mlmc_l, M, N, L, N0, eps.v, Lmin, Lmax, silent = FALSE, ...)
+mlmc.test(mlmc_l, M, N, L, N0, eps.v, Lmin, Lmax, parallel = NA,
+  silent = FALSE, ...)
 }
 \arguments{
 \item{mlmc_l}{a user supplied function which provides the estimate for level
@@ -25,6 +26,9 @@ for any subsequent levels which are automatically added.  Must be
 \item{Lmin}{the minimum level of refinement.  Must be \eqn{\ge 2}.}
 
 \item{Lmax}{the maximum level of refinement.  Must be \eqn{\ge} Lmin.}
+
+\item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel
+processes an compute each level estimate in parallel.}
 
 \item{silent}{set to TRUE to supress running output (identical output can still be printed by printing the return result)}
 

@@ -61,6 +61,8 @@
 #' @param beta the variance, \eqn{O(2^{-beta*l})}.  If \code{NA} then
 #'   \code{beta} will be estimated.
 #' @param gamma the sample cost, \eqn{O(2^{gamma*l})}.  Must be \eqn{> 0}.
+#' @param parallel if an integer is supplied, R will fork \code{parallel} parallel
+#'   processes an compute each level estimate in parallel.
 #' @param ... additional arguments which are passed on when the user supplied
 #'   \code{mlmc_l} function is called
 #'
@@ -69,8 +71,9 @@
 #'   \item{\code{Nl}}{A vector of the number of samples performed on each level.}
 #' }
 #'
+#' @importFrom parallel mcmapply
 #' @export
-mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha=NA, beta=NA, gamma, ...) {
+mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha=NA, beta=NA, gamma, parallel=NA, ...) {
   # check parameters are acceptable
   if(Lmin<2) {
     stop("Lmin must be >= 2.")
@@ -102,13 +105,22 @@ mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha=NA, beta=NA, gamma, ...) {
 
   while(sum(dNl) > 0) {
     # update sample sums from each level
-    for(l in 0:L) {
-      if(dNl[l+1] > 0) {
-        sums        <- mlmc_l(l, dNl[l+1], ...)
-        Nl[l+1]     <- Nl[l+1] + dNl[l+1]
-        suml[1,l+1] <- suml[1,l+1] + sums[1]
-        suml[2,l+1] <- suml[2,l+1] + sums[2]
+    if(is.na(parallel)) {
+      for(l in 0:L) {
+        if(dNl[l+1] > 0) {
+          sums        <- mlmc_l(l, dNl[l+1], ...)
+          Nl[l+1]     <- Nl[l+1] + dNl[l+1]
+          suml[1,l+1] <- suml[1,l+1] + sums[1]
+          suml[2,l+1] <- suml[2,l+1] + sums[2]
+        }
       }
+    } else if(is.numeric(parallel)) {
+      par.vars <- data.frame(l=0:L, dNl=dNl)[!(dNl==0),]
+      sums <- mcmapply(function(l, dNl, ...) {
+        mlmc_l(l, dNl, ...)
+      }, l = par.vars$l, dNl = par.vars$dNl, ..., mc.cores = parallel)
+      Nl <- Nl+dNl
+      suml[,!(dNl==0)] <- suml[,!(dNl==0)] + sums[1:2,]
     }
 
     # compute absolute average and variance

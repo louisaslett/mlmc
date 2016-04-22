@@ -26,7 +26,7 @@
 #' plot(tst)
 #' }
 #'
-#' @importFrom ggplot2 ggplot aes geom_point geom_line xlab ylab scale_x_log10 scale_y_log10 annotation_logticks
+#' @importFrom ggplot2 ggplot aes_string geom_point geom_line xlab ylab scale_x_log10 scale_y_log10 annotation_logticks
 #' @export
 plot.mlmc.test <- function(x, which="all", cols=NA, ...) {
   if(length(which)==1 && which=="all") {
@@ -38,8 +38,8 @@ plot.mlmc.test <- function(x, which="all", cols=NA, ...) {
       ggplot(data.frame(l=rep(0:x$L, 2),
                         var=c(log2(x$var1), log2(x$var2)),
                         Method=c(rep("MLMC", x$L+1), rep("MC", x$L+1)))) +
-        geom_point(aes(x=l, y=var, colour=Method)) +
-        geom_line(aes(x=l, y=var, colour=Method, linetype=Method)) +
+        geom_point(aes_string(x="l", y="var", colour="Method")) +
+        geom_line(aes_string(x="l", y="var", colour="Method", linetype="Method")) +
         xlab("Level") +
         ylab(expression(log[2](Variance)))
     ))
@@ -49,8 +49,8 @@ plot.mlmc.test <- function(x, which="all", cols=NA, ...) {
       ggplot(data.frame(l=rep(0:x$L, 2),
                         mean=c(log2(x$del1), log2(x$del2)),
                         Method=c(rep("MLMC", x$L+1), rep("MC", x$L+1)))) +
-        geom_point(aes(x=l, y=mean, colour=Method)) +
-        geom_line(aes(x=l, y=mean, colour=Method, linetype=Method)) +
+        geom_point(aes_string(x="l", y="mean", colour="Method")) +
+        geom_line(aes_string(x="l", y="mean", colour="Method", linetype="Method")) +
         xlab("Level") +
         ylab(expression(log[2](Mean)))
     ))
@@ -59,8 +59,8 @@ plot.mlmc.test <- function(x, which="all", cols=NA, ...) {
     p <- c(p, list(
       ggplot(data.frame(l=0:x$L,
                         consis=x$chk1)) +
-        geom_point(aes(x=l, y=consis)) +
-        geom_line(aes(x=l, y=consis)) +
+        geom_point(aes_string(x="l", y="consis")) +
+        geom_line(aes_string(x="l", y="consis")) +
         xlab("Level") +
         ylab("Consistency check")
     ))
@@ -69,8 +69,8 @@ plot.mlmc.test <- function(x, which="all", cols=NA, ...) {
     p <- c(p, list(
       ggplot(data.frame(l=0:x$L,
                         kurt=x$kur1)) +
-        geom_point(aes(x=l, y=kurt)) +
-        geom_line(aes(x=l, y=kurt)) +
+        geom_point(aes_string(x="l", y="kurt")) +
+        geom_line(aes_string(x="l", y="kurt")) +
         xlab("Level") +
         ylab("Kurtosis")
     ))
@@ -80,8 +80,8 @@ plot.mlmc.test <- function(x, which="all", cols=NA, ...) {
       ggplot(data.frame(l=unlist(lapply(sapply(x$Nl, length), seq)),
                         Nl=log2(unlist(x$Nl)),
                         Epsilon=as.factor(rep(x$eps.v, times=sapply(x$Nl, length))))) +
-        geom_point(aes(x=l, y=Nl, colour=Epsilon)) +
-        geom_line(aes(x=l, y=Nl, colour=Epsilon, linetype=Epsilon)) +
+        geom_point(aes_string(x="l", y="Nl", colour="Epsilon")) +
+        geom_line(aes_string(x="l", y="Nl", colour="Epsilon", linetype="Epsilon")) +
         xlab("Level") +
         ylab(expression(log[2](N[l])))
     ))
@@ -91,8 +91,8 @@ plot.mlmc.test <- function(x, which="all", cols=NA, ...) {
       ggplot(data.frame(eps=rep(x$eps.v, 2),
                         cost=c(x$eps.v^2*x$mlmc_cost, x$eps.v^2*x$std_cost),
                         Method=c(rep("MLMC", length(x$eps.v)), rep("MC", length(x$eps.v))))) +
-        geom_point(aes(x=eps, y=cost, colour=Method)) +
-        geom_line(aes(x=eps, y=cost, colour=Method, linetype=Method)) +
+        geom_point(aes_string(x="eps", y="cost", colour="Method")) +
+        geom_line(aes_string(x="eps", y="cost", colour="Method", linetype="Method")) +
         xlab(expression(log[10](epsilon))) +
         ylab(expression(log[10](epsilon^2*Cost))) +
         scale_x_log10() +

@@ -8,7 +8,7 @@ Authors@R: c(
     person("Sebastian", "Vollmer", email = "vollmer@stats.ox.ac.uk", role = "ctb"))
 Maintainer: Louis Aslett <aslett@stats.ox.ac.uk>
 Description: An implementation of Multi-level Monte Carlo for R.  This package
-    builds on the original Matlab and C++ implementations by Mike Giles to provide
+    builds on the original 'Matlab' and C++ implementations by Mike Giles to provide
     a full MLMC driver and example level samplers.  Multi-core parallel sampling
     of levels is provided built-in.
 Imports: ggplot2,

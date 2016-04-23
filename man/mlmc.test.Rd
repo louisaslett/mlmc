@@ -45,7 +45,7 @@ Computes a suite of diagnostic values for an MLMC estimation problem.
 See one of the example level sampler functions (e.g. \code{\link{opre_l}}) for
 example usage.
 
-This function is based on GPL-2 Matlab code by Mike Giles.
+This function is based on GPL-2 'Matlab' code by Mike Giles.
 }
 \examples{
 \dontrun{

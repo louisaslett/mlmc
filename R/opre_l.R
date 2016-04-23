@@ -19,7 +19,7 @@ mu <- function(x, h) {
 #' similar to Mike Giles' original 2008 Operations Research paper, using an
 #' Euler-Maruyama discretisation
 #'
-#' This function is based on GPL-2 Matlab code by Mike Giles.
+#' This function is based on GPL-2 'Matlab' code by Mike Giles.
 #'
 #' @param l the level to be simulated.
 #' @param N the number of samples to be computed.
@@ -107,6 +107,8 @@ mu <- function(x, h) {
 #'   plot(test.res[[option]])
 #' }
 #' }
+#'
+#' @importFrom stats rnorm
 #' @export
 opre_l <- function(l, N, option) {
   M <- 4

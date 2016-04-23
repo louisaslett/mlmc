@@ -76,7 +76,7 @@ For further information on multilevel Monte Carlo methods, see the webpage
 which lists the research groups working in the area, and their
 main publications.
 
-This function is based on GPL-2 Matlab code by Mike Giles.
+This function is based on GPL-2 'Matlab' code by Mike Giles.
 }
 \author{
 Louis Aslett <aslett@stats.ox.ac.uk>

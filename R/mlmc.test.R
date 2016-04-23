@@ -8,7 +8,7 @@
 #' See one of the example level sampler functions (e.g. \code{\link{opre_l}}) for
 #' example usage.
 #'
-#' This function is based on GPL-2 Matlab code by Mike Giles.
+#' This function is based on GPL-2 'Matlab' code by Mike Giles.
 #'
 #' @param mlmc_l a user supplied function which provides the estimate for level
 #'   l
@@ -49,6 +49,7 @@
 #' plot(tst)
 #' }
 #'
+#' @importFrom stats lm
 #' @export
 mlmc.test <- function(mlmc_l, M, N, L, N0, eps.v, Lmin, Lmax, parallel=NA, silent=FALSE, ...) {
   if(silent)

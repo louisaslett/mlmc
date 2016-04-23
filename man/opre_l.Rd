@@ -25,7 +25,7 @@ similar to Mike Giles' original 2008 Operations Research paper, using an
 Euler-Maruyama discretisation
 }
 \details{
-This function is based on GPL-2 Matlab code by Mike Giles.
+This function is based on GPL-2 'Matlab' code by Mike Giles.
 }
 \examples{
 \dontrun{
@@ -100,6 +100,7 @@ for(option in 1:5) {
   plot(test.res[[option]])
 }
 }
+
 }
 \author{
 Louis Aslett <aslett@stats.ox.ac.uk>

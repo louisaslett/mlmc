@@ -36,7 +36,7 @@
 #' which lists the research groups working in the area, and their
 #' main publications.
 #'
-#' This function is based on GPL-2 Matlab code by Mike Giles.
+#' This function is based on GPL-2 'Matlab' code by Mike Giles.
 #'
 #' @author Louis Aslett <aslett@stats.ox.ac.uk>
 #' @author Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
@@ -72,6 +72,7 @@
 #' }
 #'
 #' @importFrom parallel mcmapply
+#' @importFrom stats lm
 #' @export
 mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha=NA, beta=NA, gamma, parallel=NA, ...) {
   # check parameters are acceptable

@@ -4,6 +4,7 @@ Title: Multi-Level Monte Carlo
 Version: 1.0.0
 Authors@R: c(
     person("Louis", "Aslett", email = "aslett@stats.ox.ac.uk", role = c("cre", "aut", "trl")),
+    person("Mike", "Giles", email = "Mike.Giles@maths.ox.ac.uk", role = "ctb"),
     person("Tigran", "Nagapetyan", email = "nagapetyan@stats.ox.ac.uk", role = "ctb"),
     person("Sebastian", "Vollmer", email = "vollmer@stats.ox.ac.uk", role = "ctb"))
 Maintainer: Louis Aslett <aslett@stats.ox.ac.uk>

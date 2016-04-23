@@ -24,6 +24,7 @@ using namespace Rcpp;
 //' }
 //'
 //' @author Louis Aslett <aslett@stats.ox.ac.uk>
+//' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
 //'
 //' @examples
 //' \dontrun{

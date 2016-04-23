@@ -68,6 +68,8 @@ plot(tst)
 \author{
 Louis Aslett <aslett@stats.ox.ac.uk>
 
+Mike Giles <Mike.Giles@maths.ox.ac.uk>
+
 Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 }
 

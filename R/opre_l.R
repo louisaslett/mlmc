@@ -32,6 +32,7 @@ mu <- function(x, h) {
 #' }
 #'
 #' @author Louis Aslett <aslett@stats.ox.ac.uk>
+#' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
 #' @author Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 #'
 #' @examples

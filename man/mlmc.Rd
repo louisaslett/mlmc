@@ -81,6 +81,8 @@ This function is based on GPL-2 'Matlab' code by Mike Giles.
 \author{
 Louis Aslett <aslett@stats.ox.ac.uk>
 
+Mike Giles <Mike.Giles@maths.ox.ac.uk>
+
 Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 }
 \references{

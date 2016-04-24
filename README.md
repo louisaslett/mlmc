@@ -47,6 +47,6 @@ Louis Aslett is supported by the i-like programme grant (EPSRC grant reference n
 
 If you use this software, please cite:
 
-Aslett, L. J. M., Nagapetyan, T. and Vollmer, S. J. (2016), *mlmc: Tools for Multilevel Monte Carlo*.  R package.
+Aslett, L. J. M., Giles, M. B., Nagapetyan, T. and Vollmer, S. J. (2016), *mlmc: Tools for Multilevel Monte Carlo*.  R package.
 
 Thank-you.

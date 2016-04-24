@@ -101,6 +101,9 @@ for(option in 1:5) {
 }
 }
 
+# The level sampler can be called directly to retrieve the relevant level sums:
+opre_l(l=7, N=10, option=1)
+
 }
 \author{
 Louis Aslett <aslett@stats.ox.ac.uk>
@@ -108,5 +111,8 @@ Louis Aslett <aslett@stats.ox.ac.uk>
 Mike Giles <Mike.Giles@maths.ox.ac.uk>
 
 Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
+}
+\references{
+M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607-617, 2008.
 }
 

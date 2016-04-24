@@ -35,6 +35,9 @@ mu <- function(x, h) {
 #' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
 #' @author Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 #'
+#' @references
+#' M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607-617, 2008.
+#'
 #' @examples
 #' \dontrun{
 #' # These are similar to the MLMC tests for the original
@@ -108,6 +111,9 @@ mu <- function(x, h) {
 #'   plot(test.res[[option]])
 #' }
 #' }
+#'
+#' # The level sampler can be called directly to retrieve the relevant level sums:
+#' opre_l(l=7, N=10, option=1)
 #'
 #' @importFrom stats rnorm
 #' @export

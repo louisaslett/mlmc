@@ -72,6 +72,11 @@
 #'   \item{\code{Nl}}{A vector of the number of samples performed on each level.}
 #' }
 #'
+#' @examples
+#' mlmc(2, 6, 1000, 0.01, opre_l, gamma=1, option=1)
+#'
+#' mlmc(2, 10, 1000, 0.01, mcqmc06_l, gamma=1, option=1)
+#'
 #' @importFrom parallel mcmapply
 #' @importFrom stats lm
 #' @export
@@ -95,7 +100,9 @@ mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha=NA, beta=NA, gamma, parallel
 
   # initialise the MLMC run
   est.alpha <- is.na(alpha)
+  alpha <- ifelse(is.na(alpha), 0, alpha)
   est.beta  <- is.na(beta)
+  beta <- ifelse(is.na(beta), 0, beta)
 
   theta <- 0.25
 

@@ -21,6 +21,9 @@
 #' @author Louis Aslett <aslett@stats.ox.ac.uk>
 #' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
 #'
+#' @references
+#' M.B. Giles. 'Improved multilevel Monte Carlo convergence using the Milstein scheme', p.343-358 in \emph{Monte Carlo and Quasi-Monte Carlo Methods 2006}, Springer, 2007.
+#'
 #' @examples
 #' \dontrun{
 #' # These are similar to the MLMC tests for the MCQMC06 paper
@@ -72,6 +75,10 @@
 #'   plot(test.res[[option]])
 #' }
 #' }
+#'
+#' # The level sampler can be called directly to retrieve the relevant level sums:
+#' mcqmc06_l(l=7, N=10, option=1)
+#'
 #' @export
 mcqmc06_l <- function(l, N, option) {
     .Call('mlmc_mcqmc06_l', PACKAGE = 'mlmc', l, N, option)

@@ -78,6 +78,12 @@ main publications.
 
 This function is based on GPL-2 'Matlab' code by Mike Giles.
 }
+\examples{
+mlmc(2, 6, 1000, 0.01, opre_l, gamma=1, option=1)
+
+mlmc(2, 10, 1000, 0.01, mcqmc06_l, gamma=1, option=1)
+
+}
 \author{
 Louis Aslett <aslett@stats.ox.ac.uk>
 

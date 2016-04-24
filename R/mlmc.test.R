@@ -35,6 +35,7 @@
 #'
 #' @examples
 #' \dontrun{
+#' # Example calls with realistic arguments
 #' tst <- mlmc.test(opre_l, M=4, N=2000000,
 #'                  L=5, N0=1000,
 #'                  eps.v=c(0.005, 0.01, 0.02, 0.05, 0.1),
@@ -49,6 +50,17 @@
 #' tst
 #' plot(tst)
 #' }
+#'
+#' # Toy versions for CRAN tests
+#' tst <- mlmc.test(opre_l, M=4, N=10000,
+#'                  L=5, N0=1000,
+#'                  eps.v=c(0.025, 0.1),
+#'                  Lmin=2, Lmax=6, option=1)
+#'
+#' tst <- mlmc.test(mcqmc06_l, M=2, N=10000,
+#'                  L=8, N0=1000,
+#'                  eps.v=c(0.025, 0.1),
+#'                  Lmin=2, Lmax=10, option=1)
 #'
 #' @importFrom stats lm
 #' @export

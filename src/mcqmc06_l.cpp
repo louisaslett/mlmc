@@ -103,7 +103,7 @@ NumericVector mcqmc06_l(int l, int N, int option) {
 
   int   nf, nc;
   double T, r, sig, B, hf, hc, X0, Xf, Xc, Af, Ac, Mf, Mc, Bf, Bc,
-  Xf0, Xc0, Xc1, vf, vc, dWc, ddW, Pf, Pc, dP, K;
+  Xf0 = 0.0, Xc0 = 0.0, Xc1, vf, vc, dWc, ddW, Pf, Pc, dP, K;
 
   double dWf[2], dIf[2], Lf[2];
 
@@ -238,7 +238,7 @@ NumericVector mcqmc06_l(int l, int N, int option) {
     } else {
       // Should be impossible to reach here, but adding to hint to compiler
       // these variables are never uninitialised
-      Pf = 0.0; Xf0 = 0.0; Xc0 = 0.0; Pc = 0.0;
+      Pf = 0.0; Pc = 0.0;
       stop("option must be between 1 and 5 inclusive\n");
     }
 

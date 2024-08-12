@@ -31,4 +31,4 @@ preferred-citation:
   title: "mlmc: Multi-Level Monte Carlo"
   year: 2016
   note: "R package"
-  url = "https://CRAN.R-project.org/package=mlmc"
+  url: "https://CRAN.R-project.org/package=mlmc"

@@ -1,13 +1,13 @@
 Package: mlmc
 Type: Package
 Title: Multi-Level Monte Carlo
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
-    person("Louis", "Aslett", email = "aslett@stats.ox.ac.uk", role = c("cre", "aut", "trl")),
+    person("Louis", "Aslett", email = "louis.aslett@durham.ac.uk", role = c("cre", "aut", "trl")),
     person("Mike", "Giles", email = "Mike.Giles@maths.ox.ac.uk", role = "ctb"),
     person("Tigran", "Nagapetyan", email = "nagapetyan@stats.ox.ac.uk", role = "ctb"),
     person("Sebastian", "Vollmer", email = "vollmer@stats.ox.ac.uk", role = "ctb"))
-Maintainer: Louis Aslett <aslett@stats.ox.ac.uk>
+Maintainer: Louis Aslett <louis.aslett@durham.ac.uk>
 Description: An implementation of Multi-level Monte Carlo for R.  This package
     builds on the original 'Matlab' and C++ implementations by Mike Giles to provide
     a full MLMC driver and example level samplers.  Multi-core parallel sampling
@@ -18,5 +18,6 @@ Imports: ggplot2,
     Rcpp
 License: GPL-2
 LazyData: TRUE
-RoxygenNote: 5.0.1
+RoxygenNote: 7.3.2
+Encoding: UTF-8
 LinkingTo: Rcpp

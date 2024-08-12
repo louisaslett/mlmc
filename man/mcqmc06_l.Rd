@@ -45,27 +45,27 @@ Lmax <- 10 # maximum refinement level
 test.res <- list()
 for(option in 1:5) {
   if(option==1) {
-    cat("\\n ---- Computing European call ---- \\n")
+    cat("\n ---- Computing European call ---- \n")
     N      <- 20000 # samples for convergence tests
     L      <- 8 # levels for convergence tests
     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
   } else if(option==2) {
-    cat("\\n ---- Computing Asian call ---- \\n")
+    cat("\n ---- Computing Asian call ---- \n")
     N      <- 20000 # samples for convergence tests
     L      <- 8 # levels for convergence tests
     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
   } else if(option==3) {
-    cat("\\n ---- Computing lookback call ---- \\n")
+    cat("\n ---- Computing lookback call ---- \n")
     N      <- 20000 # samples for convergence tests
     L      <- 10 # levels for convergence tests
     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
   } else if(option==4) {
-    cat("\\n ---- Computing digital call ---- \\n")
+    cat("\n ---- Computing digital call ---- \n")
     N      <- 200000 # samples for convergence tests
     L      <- 8 # levels for convergence tests
     Eps    <- c(0.01, 0.02, 0.05, 0.1, 0.2)
   } else if(option==5) {
-    cat("\\n ---- Computing barrier call ---- \\n")
+    cat("\n ---- Computing barrier call ---- \n")
     N      <- 200000 # samples for convergence tests
     L      <- 8 # levels for convergence tests
     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
@@ -82,12 +82,11 @@ for(option in 1:5) {
 mcqmc06_l(l=7, N=10, option=1)
 
 }
-\author{
-Louis Aslett <aslett@stats.ox.ac.uk>
-
-Mike Giles <Mike.Giles@maths.ox.ac.uk>
-}
 \references{
 M.B. Giles. 'Improved multilevel Monte Carlo convergence using the Milstein scheme', p.343-358 in \emph{Monte Carlo and Quasi-Monte Carlo Methods 2006}, Springer, 2007.
 }
+\author{
+Louis Aslett <louis.aslett@durham.ac.uk>
 
+Mike Giles <Mike.Giles@maths.ox.ac.uk>
+}

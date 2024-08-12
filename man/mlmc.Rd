@@ -4,8 +4,18 @@
 \alias{mlmc}
 \title{Multi-level Monte Carlo estimation}
 \usage{
-mlmc(Lmin, Lmax, N0, eps, mlmc_l, alpha = NA, beta = NA, gamma,
-  parallel = NA, ...)
+mlmc(
+  Lmin,
+  Lmax,
+  N0,
+  eps,
+  mlmc_l,
+  alpha = NA,
+  beta = NA,
+  gamma,
+  parallel = NA,
+  ...
+)
 }
 \arguments{
 \item{Lmin}{the minimum level of refinement.  Must be \eqn{\ge 2}.}
@@ -84,13 +94,6 @@ mlmc(2, 6, 1000, 0.01, opre_l, gamma=1, option=1)
 mlmc(2, 10, 1000, 0.01, mcqmc06_l, gamma=1, option=1)
 
 }
-\author{
-Louis Aslett <aslett@stats.ox.ac.uk>
-
-Mike Giles <Mike.Giles@maths.ox.ac.uk>
-
-Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
-}
 \references{
 M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607-617, 2008.
 
@@ -98,4 +101,10 @@ M.B. Giles. Multilevel Monte Carlo methods. \emph{Acta Numerica}, 24:259-328, 20
 
 S. Heinrich. Monte Carlo complexity of global solution of integral equations. \emph{Journal of Complexity}, 14(2):151-175, 1998.
 }
+\author{
+Louis Aslett <louis.aslett@durham.ac.uk>
 
+Mike Giles <Mike.Giles@maths.ox.ac.uk>
+
+Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
+}

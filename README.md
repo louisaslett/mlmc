@@ -12,7 +12,7 @@ An implementation of Multi-level Monte Carlo for R.  This package builds on the 
 Please feel free to:
 
 * submit suggestions and bug-reports at: <https://github.com/louisaslett/mlmc/issues>
-* compose an e-mail to: <aslett@stats.ox.ac.uk>, <nagapetyan@stats.ox.ac.uk> or <vollmer@stats.ox.ac.uk>
+* compose an e-mail to: <louis.aslett@durham.ac.uk>, <nagapetyan@stats.ox.ac.uk> or <vollmer@stats.ox.ac.uk>
 
 ## Install
 

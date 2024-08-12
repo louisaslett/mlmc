@@ -23,7 +23,7 @@ using namespace Rcpp;
 //'   \item{5 = barrier call.}{}
 //' }
 //'
-//' @author Louis Aslett <aslett@stats.ox.ac.uk>
+//' @author Louis Aslett <louis.aslett@durham.ac.uk>
 //' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
 //'
 //' @references

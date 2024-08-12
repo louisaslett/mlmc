@@ -14,7 +14,7 @@
 #' @param cols the number of columns across to plot to override the default value.
 #' @param ... additional arguments which are passed on to plotting functions.
 #'
-#' @author Louis Aslett <aslett@stats.ox.ac.uk>
+#' @author Louis Aslett <louis.aslett@durham.ac.uk>
 #'
 #' @examples
 #' \dontrun{

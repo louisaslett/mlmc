@@ -29,7 +29,7 @@
 #'
 #' @return An \code{mlmc.test} object which contains all the computed diagnostic values.  This object can be printed or plotted (see \code{\link{plot.mlmc.test}}).
 #'
-#' @author Louis Aslett <aslett@stats.ox.ac.uk>
+#' @author Louis Aslett <louis.aslett@durham.ac.uk>
 #' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
 #' @author Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 #'

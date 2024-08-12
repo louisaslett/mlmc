@@ -37,6 +37,5 @@ plot(tst)
 
 }
 \author{
-Louis Aslett <aslett@stats.ox.ac.uk>
+Louis Aslett <louis.aslett@durham.ac.uk>
 }
-

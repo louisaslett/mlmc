@@ -23,7 +23,7 @@ using namespace Rcpp;
 //'   \item{5 = barrier call.}{}
 //' }
 //'
-//' @author Louis Aslett <aslett@stats.ox.ac.uk>
+//' @author Louis Aslett <louis.aslett@durham.ac.uk>
 //' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
 //'
 //' @references
@@ -89,16 +89,26 @@ using namespace Rcpp;
 NumericVector mcqmc06_l(int l, int N, int option) {
   RNGScope scope;
 
+  NumericVector sums(6);
+
+  if(l < 0) {
+    stop("l must be >= 0\n");
+  }
+  if(N < 1) {
+    stop("N must be > 0\n");
+  }
+  if(option < 1 || option > 5) {
+    stop("option must be between 1 and 5 inclusive\n");
+  }
+
   int   nf, nc;
   double T, r, sig, B, hf, hc, X0, Xf, Xc, Af, Ac, Mf, Mc, Bf, Bc,
-  Xf0, Xc0, Xc1, vf, vc, dWc, ddW, Pf, Pc, dP, K;
+  Xf0 = 0.0, Xc0 = 0.0, Xc1, vf, vc, dWc, ddW, Pf, Pc, dP, K;
 
   double dWf[2], dIf[2], Lf[2];
 
   // ull   v1[3], v2[3];       // needed for RNG
   // float x1, x2 = nanf("");  // needed for Normal RNG
-
-  NumericVector sums(6);
 
   // initialise seeds
 
@@ -225,6 +235,11 @@ NumericVector mcqmc06_l(int l, int N, int option) {
     else if (option==5) {
       Pf  = Bf*fmax(0.0f,Xf-K);
       Pc  = Bc*fmax(0.0f,Xc-K);
+    } else {
+      // Should be impossible to reach here, but adding to hint to compiler
+      // these variables are never uninitialised
+      Pf = 0.0; Pc = 0.0;
+      stop("option must be between 1 and 5 inclusive\n");
     }
 
     dP  = exp(-r*T)*(Pf-Pc);

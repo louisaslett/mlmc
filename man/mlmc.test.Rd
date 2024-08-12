@@ -4,8 +4,19 @@
 \alias{mlmc.test}
 \title{Multi-level Monte Carlo estimation test suite}
 \usage{
-mlmc.test(mlmc_l, M, N, L, N0, eps.v, Lmin, Lmax, parallel = NA,
-  silent = FALSE, ...)
+mlmc.test(
+  mlmc_l,
+  M,
+  N,
+  L,
+  N0,
+  eps.v,
+  Lmin,
+  Lmax,
+  parallel = NA,
+  silent = FALSE,
+  ...
+)
 }
 \arguments{
 \item{mlmc_l}{a user supplied function which provides the estimate for level
@@ -78,10 +89,9 @@ tst <- mlmc.test(mcqmc06_l, M=2, N=10000,
 
 }
 \author{
-Louis Aslett <aslett@stats.ox.ac.uk>
+Louis Aslett <louis.aslett@durham.ac.uk>
 
 Mike Giles <Mike.Giles@maths.ox.ac.uk>
 
 Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 }
-

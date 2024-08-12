@@ -47,27 +47,27 @@ Lmax <- 6 # maximum refinement level
 test.res <- list()
 for(option in 1:5) {
   if(option==1) {
-    cat("\\n ---- Computing European call ---- \\n")
+    cat("\n ---- Computing European call ---- \n")
     N      <- 2000000 # samples for convergence tests
     L      <- 5 # levels for convergence tests
     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
   } else if(option==2) {
-    cat("\\n ---- Computing Asian call ---- \\n")
+    cat("\n ---- Computing Asian call ---- \n")
     N      <- 2000000 # samples for convergence tests
     L      <- 5 # levels for convergence tests
     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
   } else if(option==3) {
-    cat("\\n ---- Computing lookback call ---- \\n")
+    cat("\n ---- Computing lookback call ---- \n")
     N      <- 2000000 # samples for convergence tests
     L      <- 5 # levels for convergence tests
     Eps    <- c(0.01, 0.02, 0.05, 0.1, 0.2)
   } else if(option==4) {
-    cat("\\n ---- Computing digital call ---- \\n")
+    cat("\n ---- Computing digital call ---- \n")
     N      <- 3000000 # samples for convergence tests
     L      <- 5 # levels for convergence tests
     Eps    <- c(0.02, 0.05, 0.1, 0.2, 0.5)
   } else if(option==5) {
-    cat("\\n ---- Computing Heston model ---- \\n")
+    cat("\n ---- Computing Heston model ---- \n")
     N      <- 2000000 # samples for convergence tests
     L      <- 5 # levels for convergence tests
     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
@@ -86,14 +86,14 @@ for(option in 1:5) {
 
   if(option==1) {
     val <- K*( pnorm(d1) - exp(-r*T)*pnorm(d2) )
-    cat(sprintf("\\n Exact value: \%f, MLMC value: \%f \\n", val, test.res[[option]]$P[1]))
+    cat(sprintf("\n Exact value: \%f, MLMC value: \%f \n", val, test.res[[option]]$P[1]))
   } else if(option==3) {
     k   <- 0.5*sig^2/r
     val <- K*( pnorm(d1) - pnorm(-d1)*k - exp(-r*T)*(pnorm(d2) - pnorm(d2)*k) )
-    cat(sprintf("\\n Exact value: \%f, MLMC value: \%f \\n", val, test.res[[option]]$P[1]))
+    cat(sprintf("\n Exact value: \%f, MLMC value: \%f \n", val, test.res[[option]]$P[1]))
   } else if(option==4) {
     val <- K*exp(-r*T)*pnorm(d2)
-    cat(sprintf("\\n Exact value: \%f, MLMC value: \%f \\n", val, test.res[[option]]$P[1]))
+    cat(sprintf("\n Exact value: \%f, MLMC value: \%f \n", val, test.res[[option]]$P[1]))
   }
 
   # plot results
@@ -105,14 +105,13 @@ for(option in 1:5) {
 opre_l(l=7, N=10, option=1)
 
 }
+\references{
+M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607-617, 2008.
+}
 \author{
-Louis Aslett <aslett@stats.ox.ac.uk>
+Louis Aslett <louis.aslett@durham.ac.uk>
 
 Mike Giles <Mike.Giles@maths.ox.ac.uk>
 
 Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 }
-\references{
-M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607-617, 2008.
-}
-

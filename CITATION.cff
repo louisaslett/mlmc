@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+title: 'mlmc: Multi-Level Monte Carlo'
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Louis J. M.
+    family-names: Aslett
+  - given-names: Mike B.
+    family-names: Giles
+  - given-names: Tigran
+    family-names: Nagapetyan
+  - given-names: Sebastian J.
+    family-names: Vollmer
+repository-code: 'https://github.com/louisaslett/mlmc'
+repository-artifact: 'https://CRAN.R-project.org/package=mlmc'
+license: GPL-2.0
+date-released: '2016-04-24'
+preferred-citation:
+  type: manual
+  authors:
+    - given-names: Louis J. M.
+      family-names: Aslett
+    - given-names: Mike B.
+      family-names: Giles
+    - given-names: Tigran
+      family-names: Nagapetyan
+    - given-names: Sebastian J.
+      family-names: Vollmer
+  title: "mlmc: Multi-Level Monte Carlo"
+  year: 2016
+  note: "R package"
+  url: "https://CRAN.R-project.org/package=mlmc"

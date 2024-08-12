@@ -52,6 +52,16 @@ Louis Aslett was supported by the i-like programme grant (EPSRC grant reference 
 
 If you use this software, please cite:
 
-Aslett, L. J. M., Giles, M. B., Nagapetyan, T. and Vollmer, S. J. (2016), *mlmc: Tools for Multilevel Monte Carlo*.  R package.
+Aslett, L. J. M., Giles, M. B., Nagapetyan, T. and Vollmer, S. J. (2016), *mlmc: Multi-Level Monte Carlo*.  R package. <https://CRAN.R-project.org/package=mlmc>
+
+```bibtex
+@Manual{mlmcpkg,
+  title = {mlmc: Multi-Level Monte Carlo},
+  author = {Aslett, L. J. M. and Giles, M. B. and Nagapetyan, T. and Vollmer, S. J.},
+  year = {2016},
+  note = {R package},
+  url = {https://CRAN.R-project.org/package=mlmc},
+}
+```
 
 Thank-you.

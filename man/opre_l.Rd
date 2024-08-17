@@ -11,7 +11,9 @@ opre_l(l, N, option)
 
 \item{N}{the number of samples to be computed.}
 
-\item{option}{the option type, between 1 and 5.  The options are: \describe{
+\item{option}{the option type, between 1 and 5.
+The options are:
+\describe{
   \item{1 = European call;}{}
   \item{2 = Asian call;}{}
   \item{3 = lookback call;}{}
@@ -20,9 +22,7 @@ opre_l(l, N, option)
 }}
 }
 \description{
-Financial options based on scalar geometric Brownian motion and Heston models,
-similar to Mike Giles' original 2008 Operations Research paper, using an
-Euler-Maruyama discretisation
+Financial options based on scalar geometric Brownian motion and Heston models, similar to Mike Giles' original 2008 Operations Research paper, using an Euler-Maruyama discretisation
 }
 \details{
 This function is based on GPL-2 'Matlab' code by Mike Giles.

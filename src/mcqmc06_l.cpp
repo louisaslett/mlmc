@@ -1,5 +1,5 @@
 // This code is derived and adapted from the original GPL-2 C++ version by
-// Mike Giles.  See http://people.maths.ox.ac.uk/~gilesm/mlmc/
+// Mike Giles.  See https://people.maths.ox.ac.uk/~gilesm/mlmc/
 
 #include <Rcpp.h>
 using namespace Rcpp;
@@ -8,20 +8,24 @@ using namespace Rcpp;
 
 //' Financial options using a Milstein discretisation
 //'
-//' Financial options based on scalar geometric Brownian motion, similar to
-//' Mike Giles' MCQMC06 paper, using a Milstein discretisation
+//' Financial options based on scalar geometric Brownian motion, similar to Mike Giles' MCQMC06 paper, using a Milstein discretisation.
 //'
 //' This function is based on GPL-2 C++ code by Mike Giles.
 //'
-//' @param l the level to be simulated.
-//' @param N the number of samples to be computed.
-//' @param option the option type, between 1 and 5.  The options are: \describe{
-//'   \item{1 = European call;}{}
-//'   \item{2 = Asian call;}{}
-//'   \item{3 = lookback call;}{}
-//'   \item{4 = digital call;}{}
-//'   \item{5 = barrier call.}{}
-//' }
+//' @param l
+//'        the level to be simulated.
+//' @param N
+//'        the number of samples to be computed.
+//' @param option
+//'        the option type, between 1 and 5.
+//'        The options are:
+//'        \describe{
+//'          \item{1 = European call;}{}
+//'          \item{2 = Asian call;}{}
+//'          \item{3 = lookback call;}{}
+//'          \item{4 = digital call;}{}
+//'          \item{5 = barrier call.}{}
+//'        }
 //'
 //' @author Louis Aslett <louis.aslett@durham.ac.uk>
 //' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
@@ -86,10 +90,11 @@ using namespace Rcpp;
 //'
 //' @export
 // [[Rcpp::export]]
-NumericVector mcqmc06_l(int l, int N, int option) {
+List mcqmc06_l(int l, int N, int option) {
   RNGScope scope;
 
   NumericVector sums(6);
+  NumericVector cost(1);
 
   if(l < 0) {
     stop("l must be >= 0\n");
@@ -254,6 +259,10 @@ NumericVector mcqmc06_l(int l, int N, int option) {
     sums[3] += dP*dP*dP*dP;
     sums[4] += Pf;
     sums[5] += Pf*Pf;
+
+    cost[0] += nf; // add number of timesteps as cost
   }
-  return(sums);
+
+  return(List::create(Named("sums") = sums,
+                      Named("cost") = cost));
 }

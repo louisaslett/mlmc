@@ -11,7 +11,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // mcqmc06_l
-NumericVector mcqmc06_l(int l, int N, int option);
+List mcqmc06_l(int l, int N, int option);
 RcppExport SEXP _mlmc_mcqmc06_l(SEXP lSEXP, SEXP NSEXP, SEXP optionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

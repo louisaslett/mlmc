@@ -4,3 +4,7 @@ README.md
 ^CITATION\.cff$
 ^R/hex\.R$
 ^inst/.*\.png$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$

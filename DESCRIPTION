@@ -22,7 +22,7 @@ Description: An implementation of Multi-level Monte Carlo, Giles (2008)
     by Mike Giles to provide a full MLMC driver and example level samplers.
     Multi-core parallel sampling of levels is provided built-in.
 BugReports: https://github.com/louisaslett/mlmc/issues
-URL: https://github.com/louisaslett/mlmc
+URL: https://mlmc.louisaslett.com/, https://github.com/louisaslett/mlmc
 Imports: ggplot2,
     grid,
     parallel,

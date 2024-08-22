@@ -1,4 +1,16 @@
 url: https://mlmc.louisaslett.com/
 template:
   bootstrap: 5
-
+navbar:
+  structure:
+    left: [intro, reference, articles, tutorials, news, giles]
+    right: [search, github, lightswitch]
+  components:
+    giles:
+      text: Mike Giles MLMC page
+      href: https://people.maths.ox.ac.uk/~gilesm/mlmc/
+authors:
+  footer:
+    text: "Maintained by"
+  sidebar:
+    roles: [aut, ctb]

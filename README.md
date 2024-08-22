@@ -1,11 +1,11 @@
 # mlmc R package <img src="man/figures/logo.png" align="right" height="278" alt="" />
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![license](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![license](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![metacran version](https://www.r-pkg.org/badges/version/mlmc)](https://cran.r-project.org/package=mlmc)
 [![metacran downloads](https://cranlogs.r-pkg.org/badges/grand-total/mlmc)](https://cran.r-project.org/package=mlmc)
 [![mlmc status badge](https://louisaslett.r-universe.dev/badges/mlmc)](https://louisaslett.r-universe.dev/mlmc)
 
-An implementation of Multi-level Monte Carlo for R.  This package builds on the original GPL-2 Matlab and C++ implementations by Mike Giles (see <http://people.maths.ox.ac.uk/~gilesm/mlmc/>) to provide a full MLMC driver and example level samplers.  Multi-core parallel sampling of levels is provided built-in.
+An implementation of Multi-level Monte Carlo for R.  This package builds on the original GPL-2 Matlab and C++ implementations by Mike Giles (see <https://people.maths.ox.ac.uk/~gilesm/mlmc/>) to provide a full MLMC driver and example level samplers.  Multi-core parallel sampling of levels is provided built-in.
 
 ## Contact
 
@@ -33,7 +33,7 @@ install.packages("mlmc", repos = c("https://louisaslett.r-universe.dev", "https:
 
 Installing directly from [GitHub](https://github.com) is not supported by the
 `install.packages` command. You could use the
-[devtools](http://cran.r-project.org/web/packages/devtools/index.html) package
+[devtools](https://cran.r-project.org/package=devtools) package
 to install the development version if desired.
 
 ```r

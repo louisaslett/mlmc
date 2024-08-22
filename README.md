@@ -1,4 +1,4 @@
-# mlmc R package <img src="man/figures/logo.png" style="float:right; width:240px; height:278px;" alt="" />
+# mlmc R package <img src="man/figures/logo.png" align="right" height="278" alt="" />
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![license](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
 [![metacran version](https://www.r-pkg.org/badges/version/mlmc)](https://cran.r-project.org/package=mlmc)

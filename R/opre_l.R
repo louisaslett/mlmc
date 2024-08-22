@@ -1,5 +1,5 @@
 # This code is derived and adapted from the original GPL-2 Matlab version by
-# Mike Giles.  See http://people.maths.ox.ac.uk/~gilesm/mlmc/
+# Mike Giles.  See https://people.maths.ox.ac.uk/~gilesm/mlmc/
 
 sig_dW <- function(x, dW, h) {
   dW[2,] <- -0.5*dW[1,] + sqrt(0.75)*dW[2,]
@@ -15,21 +15,24 @@ mu <- function(x, h) {
 
 #' Financial options using an Euler-Maruyama discretisation
 #'
-#' Financial options based on scalar geometric Brownian motion and Heston models,
-#' similar to Mike Giles' original 2008 Operations Research paper, using an
-#' Euler-Maruyama discretisation
+#' Financial options based on scalar geometric Brownian motion and Heston models, similar to Mike Giles' original 2008 Operations Research paper, using an Euler-Maruyama discretisation
 #'
 #' This function is based on GPL-2 'Matlab' code by Mike Giles.
 #'
-#' @param l the level to be simulated.
-#' @param N the number of samples to be computed.
-#' @param option the option type, between 1 and 5.  The options are: \describe{
-#'   \item{1 = European call;}{}
-#'   \item{2 = Asian call;}{}
-#'   \item{3 = lookback call;}{}
-#'   \item{4 = digital call;}{}
-#'   \item{5 = Heston model.}{}
-#' }
+#' @param l
+#'        the level to be simulated.
+#' @param N
+#'        the number of samples to be computed.
+#' @param option
+#'        the option type, between 1 and 5.
+#'        The options are:
+#'        \describe{
+#'          \item{1 = European call;}{}
+#'          \item{2 = Asian call;}{}
+#'          \item{3 = lookback call;}{}
+#'          \item{4 = digital call;}{}
+#'          \item{5 = Heston model.}{}
+#'        }
 #'
 #' @author Louis Aslett <louis.aslett@durham.ac.uk>
 #' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
@@ -228,5 +231,8 @@ opre_l <- function(l, N, option) {
     sums[5] <- sums[5] + sum(Pf)
     sums[6] <- sums[6] + sum(Pf^2)
   }
-  sums
+
+  cost <- N*nf # cost defined as number of fine timesteps
+
+  list(sums = sums, cost = cost)
 }

@@ -12,7 +12,7 @@ mlmc(
   mlmc_l,
   alpha = NA,
   beta = NA,
-  gamma,
+  gamma = NA,
   parallel = NA,
   ...
 )
@@ -20,71 +20,66 @@ mlmc(
 \arguments{
 \item{Lmin}{the minimum level of refinement.  Must be \eqn{\ge 2}.}
 
-\item{Lmax}{the maximum level of refinement.  Must be \eqn{\ge} Lmin.}
+\item{Lmax}{the maximum level of refinement.  Must be \eqn{\ge} \code{Lmin}.}
 
-\item{N0}{initial number of samples which are used for the first 3 levels and
-for any subsequent levels which are automatically added.  Must be
-\eqn{> 0}.}
+\item{N0}{initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added.
+Must be \eqn{> 0}.}
 
-\item{eps}{the target accuracy of the estimate.  Must be \eqn{> 0}.}
+\item{eps}{the target accuracy of the estimate (root mean square error).
+Must be \eqn{> 0}.}
 
-\item{mlmc_l}{a user supplied function which provides the estimate for level
-l}
+\item{mlmc_l}{a user supplied function which provides the estimate for level \eqn{l}.
+       It must take at least two arguments, the first is the level number to be simulated and the second the number of paths.
+       Additional arguments can be taken if desired: all additional \code{...} arguments to this function are forwarded to the user defined \code{mlmc_l} function.
 
-\item{alpha}{the weak error, \eqn{O(2^{-alpha*l})}.  If \code{NA} then
-\code{alpha} will be estimated.}
+       The user supplied function should return a named list containing one element named \code{sums} and second named \code{cost}, where:
+       \describe{
+         \item{\code{sums}}{is a vector of length two \eqn{(\sum Y_i, \sum Y_i^2)} where \eqn{Y_i} are iid simulations with expectation \eqn{E[P_0]} when \eqn{l=0} and expectation \eqn{E[P_l-P_{l-1}]} when \eqn{l>0}.}
+         \item{\code{cost}}{is a scalar with the cost of the number of paths simulated.}
+       }
 
-\item{beta}{the variance, \eqn{O(2^{-beta*l})}.  If \code{NA} then
-\code{beta} will be estimated.}
+       See the function (and source code of) \code{\link[=opre_l]{opre_l()}} in this package for an example of a user supplied level sampler.}
 
-\item{gamma}{the sample cost, \eqn{O(2^{gamma*l})}.  Must be \eqn{> 0}.}
+\item{alpha}{the weak error, \eqn{O(2^{-\alpha l})}.
+Must be \eqn{> 0} if specified.
+If \code{NA} then \code{alpha} will be estimated.}
 
-\item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel
-processes an compute each level estimate in parallel.}
+\item{beta}{the variance, \eqn{O(2^{-\beta l})}.
+Must be \eqn{> 0} if specified.
+If \code{NA} then \code{beta} will be estimated.}
 
-\item{...}{additional arguments which are passed on when the user supplied
-\code{mlmc_l} function is called}
+\item{gamma}{the sample cost, \eqn{O(2^{\gamma l})}.
+Must be \eqn{> 0} if specified.
+If \code{NA} then \code{gamma} will be estimated.}
+
+\item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel processes and compute each level estimate in parallel.}
+
+\item{...}{additional arguments which are passed on when the user supplied \code{mlmc_l} function is called.}
 }
 \value{
 A list containing: \describe{
   \item{\code{P}}{The MLMC estimate;}
-  \item{\code{Nl}}{A vector of the number of samples performed on each level.}
+  \item{\code{Nl}}{A vector of the number of samples performed on each level;}
+  \item{\code{Cl}}{Cost of samples at each level.}
 }
 }
 \description{
 This function is the Multi-level Monte Carlo driver which will sample from the levels of user specified function.
 }
 \details{
-Multilevel Monte Carlo Method method originated in works Giles (2008) and Heinrich (1998).
+The Multilevel Monte Carlo Method method originated in the works Giles (2008) and Heinrich (1998).
 
-Consider  a sequence \eqn{P_0, P_1, \ldots,} which approximates \eqn{P_L} with
-increasing accuracy, but also increasing cost, we have the simple identity
+Consider a sequence \eqn{P_0, P_1, \ldots}, which approximates \eqn{P_L} with increasing accuracy, but also increasing cost, we have the simple identity
 \deqn{E[P_L] = E[P_0] + \sum_{l=1}^L E[P_l-P_{l-1}],}
 and therefore we can use the following unbiased estimator for \eqn{E[P_L]},
-\deqn{N_0^{-1} \sum_{n=1}^{N_0} P_0^{(0,n)} +
-\sum_{l=1}^L \{
-N_l^{-1} \sum_{n=1}^{N_l} (P_l^{(l,n)} - P_{l-1}^{(l,n)})
-\}}
-with the inclusion of the level \eqn{l} in the superscript \eqn{(l,n)} indicating
-that the samples used at each level of correction are independent.
+\deqn{N_0^{-1} \sum_{n=1}^{N_0} P_0^{(0,n)} + \sum_{l=1}^L \{ N_l^{-1} \sum_{n=1}^{N_l} (P_l^{(l,n)} - P_{l-1}^{(l,n)}) \}}
+with the inclusion of the level \eqn{l} in the superscript \eqn{(l,n)} indicating that the samples used at each level of correction are independent.
 
-Set \eqn{C_0}, and \eqn{V_0} to be the cost and variance of one sample of \eqn{P_0},
-and \eqn{C_l, V_l} to be the cost and variance of one sample of \eqn{P_l - P_{l-1}},
-then the overall cost and variance of the multilevel estimator is
-\eqn{\sum_{l=0}^L N_l C_l\}}
-and
-\eqn{\sum_{l=0}^L N_l^{-1} V_l},
-respectively.
+Set \eqn{C_0}, and \eqn{V_0} to be the cost and variance of one sample of \eqn{P_0}, and \eqn{C_l, V_l} to be the cost and variance of one sample of \eqn{P_l - P_{l-1}}, then the overall cost and variance of the multilevel estimator is \eqn{\sum_{l=0}^L N_l C_l} and \eqn{\sum_{l=0}^L N_l^{-1} V_l}, respectively.
 
-The idea begind the method, is that provided that the product \eqn{V_l C_l}
-decreases with \eqn{l}, i.e. the cost increases with level slower than the
-variance decreases, then one can achieve significant computational savings,
-which can be formalised as in Theorem 1 of Giles (2015).
+The idea behind the method, is that provided that the product \eqn{V_l C_l} decreases with \eqn{l}, i.e. the cost increases with level slower than the variance decreases, then one can achieve significant computational savings, which can be formalised as in Theorem 1 of Giles (2015).
 
-For further information on multilevel Monte Carlo methods, see the webpage
-\url{http://people.maths.ox.ac.uk/gilesm/mlmc_community.html}
-which lists the research groups working in the area, and their
-main publications.
+For further information on multilevel Monte Carlo methods, see the webpage \url{https://people.maths.ox.ac.uk/gilesm/mlmc_community.html} which lists the research groups working in the area, and their main publications.
 
 This function is based on GPL-2 'Matlab' code by Mike Giles.
 }

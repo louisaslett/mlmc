@@ -11,7 +11,9 @@ mcqmc06_l(l, N, option)
 
 \item{N}{the number of samples to be computed.}
 
-\item{option}{the option type, between 1 and 5.  The options are: \describe{
+\item{option}{the option type, between 1 and 5.
+The options are:
+\describe{
   \item{1 = European call;}{}
   \item{2 = Asian call;}{}
   \item{3 = lookback call;}{}
@@ -20,8 +22,7 @@ mcqmc06_l(l, N, option)
 }}
 }
 \description{
-Financial options based on scalar geometric Brownian motion, similar to
-Mike Giles' MCQMC06 paper, using a Milstein discretisation
+Financial options based on scalar geometric Brownian motion, similar to Mike Giles' MCQMC06 paper, using a Milstein discretisation.
 }
 \details{
 This function is based on GPL-2 C++ code by Mike Giles.

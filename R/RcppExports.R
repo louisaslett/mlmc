@@ -3,20 +3,24 @@
 
 #' Financial options using a Milstein discretisation
 #'
-#' Financial options based on scalar geometric Brownian motion, similar to
-#' Mike Giles' MCQMC06 paper, using a Milstein discretisation
+#' Financial options based on scalar geometric Brownian motion, similar to Mike Giles' MCQMC06 paper, using a Milstein discretisation.
 #'
 #' This function is based on GPL-2 C++ code by Mike Giles.
 #'
-#' @param l the level to be simulated.
-#' @param N the number of samples to be computed.
-#' @param option the option type, between 1 and 5.  The options are: \describe{
-#'   \item{1 = European call;}{}
-#'   \item{2 = Asian call;}{}
-#'   \item{3 = lookback call;}{}
-#'   \item{4 = digital call;}{}
-#'   \item{5 = barrier call.}{}
-#' }
+#' @param l
+#'        the level to be simulated.
+#' @param N
+#'        the number of samples to be computed.
+#' @param option
+#'        the option type, between 1 and 5.
+#'        The options are:
+#'        \describe{
+#'          \item{1 = European call;}{}
+#'          \item{2 = Asian call;}{}
+#'          \item{3 = lookback call;}{}
+#'          \item{4 = digital call;}{}
+#'          \item{5 = barrier call.}{}
+#'        }
 #'
 #' @author Louis Aslett <louis.aslett@durham.ac.uk>
 #' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>

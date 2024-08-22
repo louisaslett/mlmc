@@ -27,7 +27,7 @@ Produces diagnostic plots on the result of an \code{\link{mlmc.test}} function c
 }
 \examples{
 \dontrun{
-tst <- mlmc.test(opre_l, M=4, N=2000000,
+tst <- mlmc.test(opre_l, N=2000000,
                  L=5, N0=1000,
                  eps.v=c(0.005, 0.01, 0.02, 0.05, 0.1),
                  Lmin=2, Lmax=6, option=1)

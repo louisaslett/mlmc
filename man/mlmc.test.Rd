@@ -6,7 +6,6 @@
 \usage{
 mlmc.test(
   mlmc_l,
-  M,
   N,
   L,
   N0,
@@ -19,56 +18,53 @@ mlmc.test(
 )
 }
 \arguments{
-\item{mlmc_l}{a user supplied function which provides the estimate for level
-l}
-
-\item{M}{refinement cost factor (\eqn{2^\gamma} in the general MLMC Throrem)}
+\item{mlmc_l}{a user supplied function which provides the estimate for level l}
 
 \item{N}{number of samples to use in the tests}
 
 \item{L}{number of levels to use in the tests}
 
-\item{N0}{initial number of samples which are used for the first 3 levels and
-for any subsequent levels which are automatically added.  Must be
-\eqn{> 0}.}
+\item{N0}{initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added.
+Must be \eqn{> 0}.}
 
-\item{eps.v}{a vector of all the target accuracies in the tests.  Must all be \eqn{> 0}.}
+\item{eps.v}{a vector of all the target accuracies in the tests.
+Must all be \eqn{> 0}.}
 
-\item{Lmin}{the minimum level of refinement.  Must be \eqn{\ge 2}.}
+\item{Lmin}{the minimum level of refinement.
+Must be \eqn{\ge 2}.}
 
-\item{Lmax}{the maximum level of refinement.  Must be \eqn{\ge} Lmin.}
+\item{Lmax}{the maximum level of refinement.
+Must be \eqn{\ge} Lmin.}
 
-\item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel
-processes an compute each level estimate in parallel.}
+\item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel processes an compute each level estimate in parallel.}
 
 \item{silent}{set to TRUE to supress running output (identical output can still be printed by printing the return result)}
 
-\item{...}{additional arguments which are passed on when the user supplied
-\code{mlmc_l} function is called}
+\item{...}{additional arguments which are passed on when the user supplied \code{mlmc_l} function is called}
 }
 \value{
-An \code{mlmc.test} object which contains all the computed diagnostic values.  This object can be printed or plotted (see \code{\link{plot.mlmc.test}}).
+An \code{mlmc.test} object which contains all the computed diagnostic values.
+        This object can be printed or plotted (see \code{\link{plot.mlmc.test}}).
 }
 \description{
 Computes a suite of diagnostic values for an MLMC estimation problem.
 }
 \details{
-See one of the example level sampler functions (e.g. \code{\link{opre_l}}) for
-example usage.
+See one of the example level sampler functions (e.g. \code{\link{opre_l}}) for example usage.
 
 This function is based on GPL-2 'Matlab' code by Mike Giles.
 }
 \examples{
 \dontrun{
 # Example calls with realistic arguments
-tst <- mlmc.test(opre_l, M=4, N=2000000,
+tst <- mlmc.test(opre_l, N=2000000,
                  L=5, N0=1000,
                  eps.v=c(0.005, 0.01, 0.02, 0.05, 0.1),
                  Lmin=2, Lmax=6, option=1)
 tst
 plot(tst)
 
-tst <- mlmc.test(mcqmc06_l, M=2, N=20000,
+tst <- mlmc.test(mcqmc06_l, N=20000,
                  L=8, N0=200,
                  eps.v=c(0.005, 0.01, 0.02, 0.05, 0.1),
                  Lmin=2, Lmax=10, option=1)
@@ -77,12 +73,12 @@ plot(tst)
 }
 
 # Toy versions for CRAN tests
-tst <- mlmc.test(opre_l, M=4, N=10000,
+tst <- mlmc.test(opre_l, N=10000,
                  L=5, N0=1000,
                  eps.v=c(0.025, 0.1),
                  Lmin=2, Lmax=6, option=1)
 
-tst <- mlmc.test(mcqmc06_l, M=2, N=10000,
+tst <- mlmc.test(mcqmc06_l, N=10000,
                  L=8, N0=1000,
                  eps.v=c(0.025, 0.1),
                  Lmin=2, Lmax=10, option=1)

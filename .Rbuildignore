@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 README.md
 ^CITATION\.cff$
+^R/hex\.R$
+^inst/.*\.png$

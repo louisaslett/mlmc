@@ -4,13 +4,13 @@
 sig_dW <- function(x, dW, h) {
   dW[2,] <- -0.5*dW[1,] + sqrt(0.75)*dW[2,]
 
-  c(sqrt(pmax(0,x[2,]))*x[1,]*dW[1,],
-    exp(-5*h)*0.25*sqrt(pmax(0,x[2,]))*dW[2,]);
+  rbind(sqrt(pmax(0,x[2,]))*x[1,]*dW[1,],
+        exp(-5*h)*0.25*sqrt(pmax(0,x[2,]))*dW[2,]);
 }
 
 mu <- function(x, h) {
-  m <- c(0.05*x[1,],
-         ((1-exp(-5*h))/h)*(0.04-x[2,]))
+  rbind(0.05*x[1,],
+        ((1-exp(-5*h))/h)*(0.04-x[2,]))
 }
 
 #' Financial options using an Euler-Maruyama discretisation
@@ -158,7 +158,7 @@ opre_l <- function(l, N, option) {
         dWf <- sqrt(hf)*rnorm(N2)
         Xf  <- Xf + r*Xf*hf + sig*Xf*dWf
         Af <- Af + 0.5*hf*Xf
-        Mf <- min(Mf,Xf)
+        Mf <- pmin(Mf,Xf)
       } else {
         for (n in 1:nc){
           dWc <- rep(0, N2)
@@ -199,13 +199,13 @@ opre_l <- function(l, N, option) {
       Xc <- Xf
 
       if(l==0) {
-        dWf <- sqrt(hf)*rnorm(N2)
+        dWf <- sqrt(hf)*matrix(rnorm(2*N2), nrow=2, ncol=N2)
         Xf  <- Xf + mu(Xf,hf)*hf + sig_dW(Xf,dWf,hf)
       } else {
         for(n in 1:nc) {
           dWc <- matrix(0, nrow=2, ncol=N2)
           for(m in 1:M) {
-            dWf <- sqrt(hf)*rnorm(N2)
+            dWf <- sqrt(hf)*matrix(rnorm(2*N2), nrow=2, ncol=N2)
             dWc <- dWc + dWf
             Xf  <- Xf + mu(Xf,hf)*hf + sig_dW(Xf,dWf,hf)
           }

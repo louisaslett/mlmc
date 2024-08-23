@@ -10,8 +10,9 @@
 #' Consider a sequence \eqn{P_0, P_1, \ldots}, which approximates \eqn{P_L} with increasing accuracy, but also increasing cost, we have the simple identity
 #' \deqn{E[P_L] = E[P_0] + \sum_{l=1}^L E[P_l-P_{l-1}],}
 #' and therefore we can use the following unbiased estimator for \eqn{E[P_L]},
-#' \deqn{N_0^{-1} \sum_{n=1}^{N_0} P_0^{(0,n)} + \sum_{l=1}^L \{ N_l^{-1} \sum_{n=1}^{N_l} (P_l^{(l,n)} - P_{l-1}^{(l,n)}) \}}
-#' with the inclusion of the level \eqn{l} in the superscript \eqn{(l,n)} indicating that the samples used at each level of correction are independent.
+#' \deqn{N_0^{-1} \sum_{n=1}^{N_0} P_0^{(0,n)} + \sum_{l=1}^L \left\{ N_l^{-1} \sum_{n=1}^{N_l} \left(P_l^{(l,n)} - P_{l-1}^{(l,n)}\right) \right\}}
+#' where \eqn{N_l} samples are produced at level \eqn{l}.
+#' The inclusion of the level \eqn{l} in the superscript \eqn{(l,n)} indicates that the samples used at each level of correction are independent.
 #'
 #' Set \eqn{C_0}, and \eqn{V_0} to be the cost and variance of one sample of \eqn{P_0}, and \eqn{C_l, V_l} to be the cost and variance of one sample of \eqn{P_l - P_{l-1}}, then the overall cost and variance of the multilevel estimator is \eqn{\sum_{l=0}^L N_l C_l} and \eqn{\sum_{l=0}^L N_l^{-1} V_l}, respectively.
 #'
@@ -50,10 +51,11 @@
 #'        The user supplied function should return a named list containing one element named \code{sums} and second named \code{cost}, where:
 #'        \describe{
 #'          \item{\code{sums}}{is a vector of length two \eqn{(\sum Y_i, \sum Y_i^2)} where \eqn{Y_i} are iid simulations with expectation \eqn{E[P_0]} when \eqn{l=0} and expectation \eqn{E[P_l-P_{l-1}]} when \eqn{l>0}.}
-#'          \item{\code{cost}}{is a scalar with the cost of the number of paths simulated.}
+#'          \item{\code{cost}}{is a scalar with the total cost of the paths simulated.
+#'                             For example, in the financial options samplers included in this package, this is calculated as \eqn{NM^l}, where \eqn{N} is the number of paths requested in the call to the user function \code{mlmc_l}, \eqn{M} is the refinement cost factor (\eqn{M=2} for \code{\link[=mcqmc06_l]{mcqmc06_l()}} and \eqn{M=4} for \code{\link[=opre_l]{opre_l()}}), and \eqn{l} is the level being sampled.}
 #'        }
 #'
-#'        See the function (and source code of) \code{\link[=opre_l]{opre_l()}} in this package for an example of a user supplied level sampler.
+#'        See the function (and source code of) \code{\link[=opre_l]{opre_l()}} and \code{\link[=mcqmc06_l]{mcqmc06_l()}} in this package for an example of user supplied level samplers.
 #' @param alpha
 #'        the weak error, \eqn{O(2^{-\alpha l})}.
 #'        Must be \eqn{> 0} if specified.
@@ -74,7 +76,7 @@
 #' @return A list containing: \describe{
 #'   \item{\code{P}}{The MLMC estimate;}
 #'   \item{\code{Nl}}{A vector of the number of samples performed on each level;}
-#'   \item{\code{Cl}}{Cost of samples at each level.}
+#'   \item{\code{Cl}}{Per sample cost at each level.}
 #' }
 #'
 #' @examples

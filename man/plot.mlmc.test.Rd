@@ -9,13 +9,14 @@
 \arguments{
 \item{x}{an \code{mlmc.test} object as produced by a call to the \code{\link{mlmc.test}} function.}
 
-\item{which}{a vector of strings specifying which plots to produce, or \code{"all"} to do all diagnostic plots.  The options are: \describe{
-  \item{\code{"var"} = \eqn{log_2} of variance against level;}{}
-  \item{\code{"mean"} = \eqn{log_2} of mean against level;}{}
+\item{which}{a vector of strings specifying which plots to produce, or \code{"all"} to do all diagnostic plots
+The options are: \describe{
+  \item{\code{"var"} = \eqn{\log_2} of variance against level;}{}
+  \item{\code{"mean"} = \eqn{\log_2} of the absolute value of the mean against level;}{}
   \item{\code{"consis"} = consistency against level;}{}
   \item{\code{"kurt"} = kurtosis against level;}{}
-  \item{\code{"Nl"} = \eqn{log_2} of number of samples against level;}{}
-  \item{\code{"cost"} = \eqn{log_10} of cost against \eqn{log_10} of epsilon (accuracy).}{}
+  \item{\code{"Nl"} = \eqn{\log_2} of number of samples against level;}{}
+  \item{\code{"cost"} = \eqn{\log_{10}} of cost against \eqn{\log_{10}} of epsilon (accuracy).}{}
 }}
 
 \item{cols}{the number of columns across to plot to override the default value.}
@@ -25,16 +26,25 @@
 \description{
 Produces diagnostic plots on the result of an \code{\link{mlmc.test}} function call.
 }
+\details{
+Most of the plots produced are relatively self-explanatory.
+However, the consistency and kurtosis plots in particular may require some background.
+It is highly recommended to refer to Section 3.3 of Giles (2015), where the rationale for these diagnostic plots is addressed in full detail.
+}
 \examples{
 \dontrun{
-tst <- mlmc.test(opre_l, N=2000000,
-                 L=5, N0=1000,
-                 eps.v=c(0.005, 0.01, 0.02, 0.05, 0.1),
-                 Lmin=2, Lmax=6, option=1)
+tst <- mlmc.test(opre_l, N = 2000000,
+                 L = 5, N0 = 1000,
+                 eps.v = c(0.005, 0.01, 0.02, 0.05, 0.1),
+                 Lmin = 2, Lmax = 6,
+                 option = 1)
 tst
 plot(tst)
 }
 
+}
+\references{
+Giles, M.B. (2015) 'Multilevel Monte Carlo methods', \emph{Acta Numerica}, 24, pp. 259–328. Available at: \url{https://doi.org/10.1017/S096249291500001X}.
 }
 \author{
 Louis Aslett <louis.aslett@durham.ac.uk>

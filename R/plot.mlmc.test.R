@@ -2,26 +2,39 @@
 #'
 #' Produces diagnostic plots on the result of an \code{\link{mlmc.test}} function call.
 #'
-#' @param x an \code{mlmc.test} object as produced by a call to the \code{\link{mlmc.test}} function.
-#' @param which a vector of strings specifying which plots to produce, or \code{"all"} to do all diagnostic plots.  The options are: \describe{
-#'   \item{\code{"var"} = \eqn{log_2} of variance against level;}{}
-#'   \item{\code{"mean"} = \eqn{log_2} of mean against level;}{}
-#'   \item{\code{"consis"} = consistency against level;}{}
-#'   \item{\code{"kurt"} = kurtosis against level;}{}
-#'   \item{\code{"Nl"} = \eqn{log_2} of number of samples against level;}{}
-#'   \item{\code{"cost"} = \eqn{log_10} of cost against \eqn{log_10} of epsilon (accuracy).}{}
-#' }
-#' @param cols the number of columns across to plot to override the default value.
-#' @param ... additional arguments which are passed on to plotting functions.
+#' Most of the plots produced are relatively self-explanatory.
+#' However, the consistency and kurtosis plots in particular may require some background.
+#' It is highly recommended to refer to Section 3.3 of Giles (2015), where the rationale for these diagnostic plots is addressed in full detail.
+#'
+#' @param x
+#'        an \code{mlmc.test} object as produced by a call to the \code{\link{mlmc.test}} function.
+#' @param which
+#'        a vector of strings specifying which plots to produce, or \code{"all"} to do all diagnostic plots
+#'        The options are: \describe{
+#'          \item{\code{"var"} = \eqn{\log_2} of variance against level;}{}
+#'          \item{\code{"mean"} = \eqn{\log_2} of the absolute value of the mean against level;}{}
+#'          \item{\code{"consis"} = consistency against level;}{}
+#'          \item{\code{"kurt"} = kurtosis against level;}{}
+#'          \item{\code{"Nl"} = \eqn{\log_2} of number of samples against level;}{}
+#'          \item{\code{"cost"} = \eqn{\log_{10}} of cost against \eqn{\log_{10}} of epsilon (accuracy).}{}
+#'        }
+#' @param cols
+#'        the number of columns across to plot to override the default value.
+#' @param ...
+#'        additional arguments which are passed on to plotting functions.
 #'
 #' @author Louis Aslett <louis.aslett@durham.ac.uk>
 #'
+#' @references
+#' Giles, M.B. (2015) 'Multilevel Monte Carlo methods', \emph{Acta Numerica}, 24, pp. 259–328. Available at: \url{https://doi.org/10.1017/S096249291500001X}.
+#'
 #' @examples
 #' \dontrun{
-#' tst <- mlmc.test(opre_l, N=2000000,
-#'                  L=5, N0=1000,
-#'                  eps.v=c(0.005, 0.01, 0.02, 0.05, 0.1),
-#'                  Lmin=2, Lmax=6, option=1)
+#' tst <- mlmc.test(opre_l, N = 2000000,
+#'                  L = 5, N0 = 1000,
+#'                  eps.v = c(0.005, 0.01, 0.02, 0.05, 0.1),
+#'                  Lmin = 2, Lmax = 6,
+#'                  option = 1)
 #' tst
 #' plot(tst)
 #' }
@@ -47,12 +60,12 @@ plot.mlmc.test <- function(x, which="all", cols=NA, ...) {
   if("mean" %in% which) {
     p <- c(p, list(
       ggplot(data.frame(l=rep(0:x$L, 2),
-                        mean=c(log2(x$del1), log2(x$del2)),
+                        mean=c(log2(abs(x$del1)), log2(abs(x$del2))),
                         Method=c(rep("MLMC", x$L+1), rep("MC", x$L+1)))) +
         geom_point(aes_string(x="l", y="mean", colour="Method")) +
         geom_line(aes_string(x="l", y="mean", colour="Method", linetype="Method")) +
         xlab("Level") +
-        ylab(expression(log[2](Mean)))
+        ylab(expression(log[2](group('|', phantom(), '')*Mean*group('|', phantom(), ''))))
     ))
   }
   if("consis" %in% which) {

@@ -3,7 +3,7 @@
 
 #' Financial options using a Milstein discretisation
 #'
-#' Financial options based on scalar geometric Brownian motion, similar to Mike Giles' MCQMC06 paper, using a Milstein discretisation.
+#' Financial options based on scalar geometric Brownian motion, similar to Mike Giles' MCQMC06 paper, Giles (2008), using a Milstein discretisation.
 #'
 #' This function is based on GPL-2 C++ code by Mike Giles.
 #'
@@ -26,7 +26,7 @@
 #' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
 #'
 #' @references
-#' M.B. Giles. 'Improved multilevel Monte Carlo convergence using the Milstein scheme', p.343-358 in \emph{Monte Carlo and Quasi-Monte Carlo Methods 2006}, Springer, 2007.
+#' Giles, M. (2008) 'Improved Multilevel Monte Carlo Convergence using the Milstein Scheme', in A. Keller, S. Heinrich, and H. Niederreiter (eds) \emph{Monte Carlo and Quasi-Monte Carlo Methods 2006}. Berlin, Heidelberg: Springer, pp. 343–358. Available at: \url{https://doi.org/10.1007/978-3-540-74496-2_20}.
 #'
 #' @examples
 #' \dontrun{
@@ -39,41 +39,40 @@
 #' # -- different random number generation
 #' # -- switch to S_0=100
 #'
-#' M    <- 2 # refinement cost factor
 #' N0   <- 200 # initial samples on coarse levels
 #' Lmin <- 2 # minimum refinement level
 #' Lmax <- 10 # maximum refinement level
 #'
 #' test.res <- list()
 #' for(option in 1:5) {
-#'   if(option==1) {
+#'   if(option == 1) {
 #'     cat("\n ---- Computing European call ---- \n")
 #'     N      <- 20000 # samples for convergence tests
 #'     L      <- 8 # levels for convergence tests
 #'     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
-#'   } else if(option==2) {
+#'   } else if(option == 2) {
 #'     cat("\n ---- Computing Asian call ---- \n")
 #'     N      <- 20000 # samples for convergence tests
 #'     L      <- 8 # levels for convergence tests
 #'     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
-#'   } else if(option==3) {
+#'   } else if(option == 3) {
 #'     cat("\n ---- Computing lookback call ---- \n")
 #'     N      <- 20000 # samples for convergence tests
 #'     L      <- 10 # levels for convergence tests
 #'     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
-#'   } else if(option==4) {
+#'   } else if(option == 4) {
 #'     cat("\n ---- Computing digital call ---- \n")
 #'     N      <- 200000 # samples for convergence tests
 #'     L      <- 8 # levels for convergence tests
 #'     Eps    <- c(0.01, 0.02, 0.05, 0.1, 0.2)
-#'   } else if(option==5) {
+#'   } else if(option == 5) {
 #'     cat("\n ---- Computing barrier call ---- \n")
 #'     N      <- 200000 # samples for convergence tests
 #'     L      <- 8 # levels for convergence tests
 #'     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
 #'   }
 #'
-#'   test.res[[option]] <- mlmc.test(mcqmc06_l, M, N, L, N0, Eps, Lmin, Lmax, option=option)
+#'   test.res[[option]] <- mlmc.test(mcqmc06_l, N, L, N0, Eps, Lmin, Lmax, option = option)
 #'
 #'   # plot results
 #'   plot(test.res[[option]])
@@ -81,7 +80,7 @@
 #' }
 #'
 #' # The level sampler can be called directly to retrieve the relevant level sums:
-#' mcqmc06_l(l=7, N=10, option=1)
+#' mcqmc06_l(l = 7, N = 10, option = 1)
 #'
 #' @export
 mcqmc06_l <- function(l, N, option) {

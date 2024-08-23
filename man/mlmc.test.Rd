@@ -18,7 +18,18 @@ mlmc.test(
 )
 }
 \arguments{
-\item{mlmc_l}{a user supplied function which provides the estimate for level l}
+\item{mlmc_l}{a user supplied function which provides the estimate for level \eqn{l}.
+       It must take at least two arguments, the first is the level number to be simulated and the second the number of paths.
+       Additional arguments can be taken if desired: all additional \code{...} arguments to this function are forwarded to the user defined \code{mlmc_l} function.
+
+       The user supplied function should return a named list containing one element named \code{sums} and second named \code{cost}, where:
+       \describe{
+         \item{\code{sums}}{is a vector of length two \eqn{\left(\sum Y_i, \sum Y_i^2\right)} where \eqn{Y_i} are iid simulations with expectation \eqn{E[P_0]} when \eqn{l=0} and expectation \eqn{E[P_l-P_{l-1}]} when \eqn{l>0}.}
+         \item{\code{cost}}{is a scalar with the total cost of the paths simulated.
+                            For example, in the financial options samplers included in this package, this is calculated as \eqn{NM^l}, where \eqn{N} is the number of paths requested in the call to the user function \code{mlmc_l}, \eqn{M} is the refinement cost factor (\eqn{M=2} for \code{\link[=mcqmc06_l]{mcqmc06_l()}} and \eqn{M=4} for \code{\link[=opre_l]{opre_l()}}), and \eqn{l} is the level being sampled.}
+       }
+
+       See the function (and source code of) \code{\link[=opre_l]{opre_l()}} and \code{\link[=mcqmc06_l]{mcqmc06_l()}} in this package for an example of user supplied level samplers.}
 
 \item{N}{number of samples to use in the tests}
 
@@ -27,16 +38,18 @@ mlmc.test(
 \item{N0}{initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added.
 Must be \eqn{> 0}.}
 
-\item{eps.v}{a vector of all the target accuracies in the tests.
+\item{eps.v}{a vector of one or more target accuracies for the tests.
 Must all be \eqn{> 0}.}
 
 \item{Lmin}{the minimum level of refinement.
 Must be \eqn{\ge 2}.}
 
 \item{Lmax}{the maximum level of refinement.
-Must be \eqn{\ge} Lmin.}
+Must be \eqn{\ge} \code{Lmin}.}
 
-\item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel processes an compute each level estimate in parallel.}
+\item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel processes.
+This is done for the convergence tests section by splitting the \code{N} samples as evenly as possible across cores when sampling each level.
+This is also done for the MLMC complexity tests by passing the \code{parallel} argument on to the \code{\link[=mlmc]{mlmc()}} driver when targeting each accuracy level in \code{eps}.}
 
 \item{silent}{set to TRUE to supress running output (identical output can still be printed by printing the return result)}
 
@@ -57,31 +70,37 @@ This function is based on GPL-2 'Matlab' code by Mike Giles.
 \examples{
 \dontrun{
 # Example calls with realistic arguments
-tst <- mlmc.test(opre_l, N=2000000,
-                 L=5, N0=1000,
-                 eps.v=c(0.005, 0.01, 0.02, 0.05, 0.1),
-                 Lmin=2, Lmax=6, option=1)
+# Financial options using an Euler-Maruyama discretisation
+tst <- mlmc.test(opre_l, N = 2000000,
+                 L = 5, N0 = 1000,
+                 eps.v = c(0.005, 0.01, 0.02, 0.05, 0.1),
+                 Lmin = 2, Lmax = 6,
+                 option = 1)
 tst
 plot(tst)
 
-tst <- mlmc.test(mcqmc06_l, N=20000,
-                 L=8, N0=200,
-                 eps.v=c(0.005, 0.01, 0.02, 0.05, 0.1),
-                 Lmin=2, Lmax=10, option=1)
+# Financial options using a Milstein discretisation
+tst <- mlmc.test(mcqmc06_l, N = 20000,
+                 L = 8, N0 = 200,
+                 eps.v = c(0.005, 0.01, 0.02, 0.05, 0.1),
+                 Lmin = 2, Lmax = 10,
+                 option = 1)
 tst
 plot(tst)
 }
 
 # Toy versions for CRAN tests
-tst <- mlmc.test(opre_l, N=10000,
-                 L=5, N0=1000,
-                 eps.v=c(0.025, 0.1),
-                 Lmin=2, Lmax=6, option=1)
+tst <- mlmc.test(opre_l, N = 10000,
+                 L = 5, N0 = 1000,
+                 eps.v = c(0.025, 0.1),
+                 Lmin = 2, Lmax = 6,
+                 option = 1)
 
-tst <- mlmc.test(mcqmc06_l, N=10000,
-                 L=8, N0=1000,
-                 eps.v=c(0.025, 0.1),
-                 Lmin=2, Lmax=10, option=1)
+tst <- mlmc.test(mcqmc06_l, N = 10000,
+                 L = 8, N0 = 1000,
+                 eps.v = c(0.025, 0.1),
+                 Lmin = 2, Lmax = 10,
+                 option = 1)
 
 }
 \author{

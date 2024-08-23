@@ -14,7 +14,7 @@ make_hex <- function() {
                       p_size = 5,
                       h_fill = "#EDEDED",
                       h_color = "#002147",
-                      url = "www.louisaslett.com",
+                      url = "mlmc.louisaslett.com",
                       u_size = 1.5,
                       u_family = "mono",
                       white_around_sticker = TRUE,

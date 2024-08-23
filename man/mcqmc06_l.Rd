@@ -22,7 +22,7 @@ The options are:
 }}
 }
 \description{
-Financial options based on scalar geometric Brownian motion, similar to Mike Giles' MCQMC06 paper, using a Milstein discretisation.
+Financial options based on scalar geometric Brownian motion, similar to Mike Giles' MCQMC06 paper, Giles (2008), using a Milstein discretisation.
 }
 \details{
 This function is based on GPL-2 C++ code by Mike Giles.
@@ -83,7 +83,7 @@ mcqmc06_l(l = 7, N = 10, option = 1)
 
 }
 \references{
-M.B. Giles. 'Improved multilevel Monte Carlo convergence using the Milstein scheme', p.343-358 in \emph{Monte Carlo and Quasi-Monte Carlo Methods 2006}, Springer, 2007.
+Giles, M. (2008) 'Improved Multilevel Monte Carlo Convergence using the Milstein Scheme', in A. Keller, S. Heinrich, and H. Niederreiter (eds) \emph{Monte Carlo and Quasi-Monte Carlo Methods 2006}. Berlin, Heidelberg: Springer, pp. 343–358. Available at: \url{https://doi.org/10.1007/978-3-540-74496-2_20}.
 }
 \author{
 Louis Aslett <louis.aslett@durham.ac.uk>

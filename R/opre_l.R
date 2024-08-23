@@ -15,7 +15,7 @@ mu <- function(x, h) {
 
 #' Financial options using an Euler-Maruyama discretisation
 #'
-#' Financial options based on scalar geometric Brownian motion and Heston models, similar to Mike Giles' original 2008 Operations Research paper, using an Euler-Maruyama discretisation
+#' Financial options based on scalar geometric Brownian motion and Heston models, similar to Mike Giles' original 2008 Operations Research paper, Giles (2008), using an Euler-Maruyama discretisation
 #'
 #' This function is based on GPL-2 'Matlab' code by Mike Giles.
 #'
@@ -39,7 +39,7 @@ mu <- function(x, h) {
 #' @author Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 #'
 #' @references
-#' M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607-617, 2008.
+#' Giles, M.B. (2008) 'Multilevel Monte Carlo Path Simulation', \emph{Operations Research}, 56(3), pp. 607–617. Available at: \url{https://doi.org/10.1287/opre.1070.0496}.
 #'
 #' @examples
 #' \dontrun{
@@ -53,41 +53,40 @@ mu <- function(x, h) {
 #' # -- the new MLMC driver is a little different
 #' # -- switch to X_0=100 instead of X_0=1
 #'
-#' M    <- 4 # refinement cost factor
 #' N0   <- 1000 # initial samples on coarse levels
 #' Lmin <- 2 # minimum refinement level
 #' Lmax <- 6 # maximum refinement level
 #'
 #' test.res <- list()
 #' for(option in 1:5) {
-#'   if(option==1) {
+#'   if(option == 1) {
 #'     cat("\n ---- Computing European call ---- \n")
-#'     N      <- 2000000 # samples for convergence tests
+#'     N      <- 1000000 # samples for convergence tests
 #'     L      <- 5 # levels for convergence tests
 #'     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
-#'   } else if(option==2) {
+#'   } else if(option == 2) {
 #'     cat("\n ---- Computing Asian call ---- \n")
-#'     N      <- 2000000 # samples for convergence tests
+#'     N      <- 1000000 # samples for convergence tests
 #'     L      <- 5 # levels for convergence tests
 #'     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
-#'   } else if(option==3) {
+#'   } else if(option == 3) {
 #'     cat("\n ---- Computing lookback call ---- \n")
-#'     N      <- 2000000 # samples for convergence tests
+#'     N      <- 1000000 # samples for convergence tests
 #'     L      <- 5 # levels for convergence tests
 #'     Eps    <- c(0.01, 0.02, 0.05, 0.1, 0.2)
-#'   } else if(option==4) {
+#'   } else if(option == 4) {
 #'     cat("\n ---- Computing digital call ---- \n")
-#'     N      <- 3000000 # samples for convergence tests
+#'     N      <- 4000000 # samples for convergence tests
 #'     L      <- 5 # levels for convergence tests
 #'     Eps    <- c(0.02, 0.05, 0.1, 0.2, 0.5)
-#'   } else if(option==5) {
+#'   } else if(option == 5) {
 #'     cat("\n ---- Computing Heston model ---- \n")
 #'     N      <- 2000000 # samples for convergence tests
 #'     L      <- 5 # levels for convergence tests
 #'     Eps    <- c(0.005, 0.01, 0.02, 0.05, 0.1)
 #'   }
 #'
-#'   test.res[[option]] <- mlmc.test(opre_l, M, N, L, N0, Eps, Lmin, Lmax, option=option)
+#'   test.res[[option]] <- mlmc.test(opre_l, N, L, N0, Eps, Lmin, Lmax, option = option)
 #'
 #'   # print exact analytic value, based on S0=K
 #'   T   <- 1
@@ -95,18 +94,25 @@ mu <- function(x, h) {
 #'   sig <- 0.2
 #'   K   <- 100
 #'
+#'   k   <- 0.5*sig^2/r;
 #'   d1  <- (r+0.5*sig^2)*T / (sig*sqrt(T))
 #'   d2  <- (r-0.5*sig^2)*T / (sig*sqrt(T))
 #'
-#'   if(option==1) {
+#'   if(option == 1) {
 #'     val <- K*( pnorm(d1) - exp(-r*T)*pnorm(d2) )
-#'     cat(sprintf("\n Exact value: %f, MLMC value: %f \n", val, test.res[[option]]$P[1]))
-#'   } else if(option==3) {
-#'     k   <- 0.5*sig^2/r
+#'   } else if(option == 2) {
+#'     val <- NA
+#'   } else if(option == 3) {
 #'     val <- K*( pnorm(d1) - pnorm(-d1)*k - exp(-r*T)*(pnorm(d2) - pnorm(d2)*k) )
-#'     cat(sprintf("\n Exact value: %f, MLMC value: %f \n", val, test.res[[option]]$P[1]))
-#'   } else if(option==4) {
+#'   } else if(option == 4) {
 #'     val <- K*exp(-r*T)*pnorm(d2)
+#'   } else if(option == 5) {
+#'     val <- NA
+#'   }
+#'
+#'   if(is.na(val)) {
+#'     cat(sprintf("\n Exact value unknown, MLMC value: %f \n", test.res[[option]]$P[1]))
+#'   } else {
 #'     cat(sprintf("\n Exact value: %f, MLMC value: %f \n", val, test.res[[option]]$P[1]))
 #'   }
 #'
@@ -116,7 +122,7 @@ mu <- function(x, h) {
 #' }
 #'
 #' # The level sampler can be called directly to retrieve the relevant level sums:
-#' opre_l(l=7, N=10, option=1)
+#' opre_l(l = 7, N = 10, option = 1)
 #'
 #' @importFrom stats rnorm
 #' @export

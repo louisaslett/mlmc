@@ -92,11 +92,11 @@ mlmc(2, 10, 1000, 0.01, mcqmc06_l, option = 1)
 
 }
 \references{
-M.B. Giles. Multilevel Monte Carlo path simulation. \emph{Operations Research}, 56(3):607-617, 2008.
+Giles, M.B. (2008) 'Multilevel Monte Carlo Path Simulation', \emph{Operations Research}, 56(3), pp. 607–617. Available at: \url{https://doi.org/10.1287/opre.1070.0496}.
 
-M.B. Giles. Multilevel Monte Carlo methods. \emph{Acta Numerica}, 24:259-328, 2015.
+Giles, M.B. (2015) 'Multilevel Monte Carlo methods', \emph{Acta Numerica}, 24, pp. 259–328. Available at: \url{https://doi.org/10.1017/S096249291500001X}.
 
-S. Heinrich. Monte Carlo complexity of global solution of integral equations. \emph{Journal of Complexity}, 14(2):151-175, 1998.
+Heinrich, S. (1998) 'Monte Carlo Complexity of Global Solution of Integral Equations', \emph{Journal of Complexity}, 14(2), pp. 151–175. Available at: \url{https://doi.org/10.1006/jcom.1998.0471}.
 }
 \author{
 Louis Aslett <louis.aslett@durham.ac.uk>

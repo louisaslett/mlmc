@@ -141,6 +141,7 @@ mlmc.test <- function(mlmc_l, N, L, N0, eps.v, Lmin, Lmax, parallel = NA, silent
       del1 <- c(del1, sums[1])
       del2 <- c(del2, sums[5])
       var1 <- c(var1, sums[2]-sums[1]^2)
+      var1 <- pmax(var1, 1e-10) # fix for cases with var=0
       var2 <- c(var2, sums[6]-sums[5]^2)
       var2 <- pmax(var2, 1e-10) # fix for cases with var=0
       kur1 <- c(kur1, kurt)

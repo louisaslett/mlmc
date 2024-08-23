@@ -50,7 +50,7 @@
 #'
 #'        The user supplied function should return a named list containing one element named \code{sums} and second named \code{cost}, where:
 #'        \describe{
-#'          \item{\code{sums}}{is a vector of length two \eqn{(\sum Y_i, \sum Y_i^2)} where \eqn{Y_i} are iid simulations with expectation \eqn{E[P_0]} when \eqn{l=0} and expectation \eqn{E[P_l-P_{l-1}]} when \eqn{l>0}.}
+#'          \item{\code{sums}}{is a vector of length two \eqn{\left(\sum Y_i, \sum Y_i^2\right)} where \eqn{Y_i} are iid simulations with expectation \eqn{E[P_0]} when \eqn{l=0} and expectation \eqn{E[P_l-P_{l-1}]} when \eqn{l>0}.}
 #'          \item{\code{cost}}{is a scalar with the total cost of the paths simulated.
 #'                             For example, in the financial options samplers included in this package, this is calculated as \eqn{NM^l}, where \eqn{N} is the number of paths requested in the call to the user function \code{mlmc_l}, \eqn{M} is the refinement cost factor (\eqn{M=2} for \code{\link[=mcqmc06_l]{mcqmc06_l()}} and \eqn{M=4} for \code{\link[=opre_l]{opre_l()}}), and \eqn{l} is the level being sampled.}
 #'        }

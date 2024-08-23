@@ -93,14 +93,17 @@ mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha = NA, beta = NA, gamma = NA,
   if(Lmax<Lmin) {
     stop("must have Lmax >= Lmin.")
   }
-  if(N0<=0 || eps<=0 || gamma <= 0){
-    stop("N0, eps and gamma must all be greater than zero.")
+  if(N0<=0 || eps<=0){
+    stop("N0 and eps must be greater than zero.")
   }
   if(!is.na(alpha) && alpha<=0) {
     stop("if specified, alpha must be greater than zero.  Set alpha to NA to automatically estimate.")
   }
   if(!is.na(beta) && beta<=0) {
     stop("if specified, beta must be greater than zero.  Set beta to NA to automatically estimate.")
+  }
+  if(!is.na(gamma) && gamma<=0) {
+    stop("if specified, gamma must be greater than zero.  Set gamma to NA to automatically estimate.")
   }
 
   # initialise the MLMC run

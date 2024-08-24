@@ -31,7 +31,7 @@ using namespace Rcpp;
 //' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
 //'
 //' @references
-//' Giles, M. (2008) 'Improved Multilevel Monte Carlo Convergence using the Milstein Scheme', in A. Keller, S. Heinrich, and H. Niederreiter (eds) \emph{Monte Carlo and Quasi-Monte Carlo Methods 2006}. Berlin, Heidelberg: Springer, pp. 343–358. Available at: \url{https://doi.org/10.1007/978-3-540-74496-2_20}.
+//' Giles, M. (2008) 'Improved Multilevel Monte Carlo Convergence using the Milstein Scheme', in A. Keller, S. Heinrich, and H. Niederreiter (eds) \emph{Monte Carlo and Quasi-Monte Carlo Methods 2006}. Berlin, Heidelberg: Springer, pp. 343–358. Available at: \doi{10.1007/978-3-540-74496-2_20}.
 //'
 //' @examples
 //' \dontrun{

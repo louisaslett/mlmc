@@ -26,7 +26,7 @@
 #' @author Louis Aslett <louis.aslett@durham.ac.uk>
 #'
 #' @references
-#' Giles, M.B. (2015) 'Multilevel Monte Carlo methods', \emph{Acta Numerica}, 24, pp. 259–328. Available at: \url{https://doi.org/10.1017/S096249291500001X}.
+#' Giles, M.B. (2015) 'Multilevel Monte Carlo methods', \emph{Acta Numerica}, 24, pp. 259–328. Available at: \doi{10.1017/S096249291500001X}.
 #'
 #' @examples
 #' \dontrun{

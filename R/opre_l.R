@@ -39,7 +39,7 @@ mu <- function(x, h) {
 #' @author Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 #'
 #' @references
-#' Giles, M.B. (2008) 'Multilevel Monte Carlo Path Simulation', \emph{Operations Research}, 56(3), pp. 607–617. Available at: \url{https://doi.org/10.1287/opre.1070.0496}.
+#' Giles, M.B. (2008) 'Multilevel Monte Carlo Path Simulation', \emph{Operations Research}, 56(3), pp. 607–617. Available at: \doi{10.1287/opre.1070.0496}.
 #'
 #' @examples
 #' \dontrun{

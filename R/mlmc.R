@@ -27,11 +27,11 @@
 #' @author Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 #'
 #' @references
-#' Giles, M.B. (2008) 'Multilevel Monte Carlo Path Simulation', \emph{Operations Research}, 56(3), pp. 607–617. Available at: \url{https://doi.org/10.1287/opre.1070.0496}.
+#' Giles, M.B. (2008) 'Multilevel Monte Carlo Path Simulation', \emph{Operations Research}, 56(3), pp. 607–617. Available at: \doi{10.1287/opre.1070.0496}.
 #'
-#' Giles, M.B. (2015) 'Multilevel Monte Carlo methods', \emph{Acta Numerica}, 24, pp. 259–328. Available at: \url{https://doi.org/10.1017/S096249291500001X}.
+#' Giles, M.B. (2015) 'Multilevel Monte Carlo methods', \emph{Acta Numerica}, 24, pp. 259–328. Available at: \doi{10.1017/S096249291500001X}.
 #'
-#' Heinrich, S. (1998) 'Monte Carlo Complexity of Global Solution of Integral Equations', \emph{Journal of Complexity}, 14(2), pp. 151–175. Available at: \url{https://doi.org/10.1006/jcom.1998.0471}.
+#' Heinrich, S. (1998) 'Monte Carlo Complexity of Global Solution of Integral Equations', \emph{Journal of Complexity}, 14(2), pp. 151–175. Available at: \doi{10.1006/jcom.1998.0471}.
 #'
 #' @param Lmin
 #'        the minimum level of refinement.  Must be \eqn{\ge 2}.

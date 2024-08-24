@@ -79,6 +79,38 @@ using namespace Rcpp;
 //'
 //'   test.res[[option]] <- mlmc.test(mcqmc06_l, N, L, N0, Eps, Lmin, Lmax, option = option)
 //'
+//'   # print exact analytic value, based on S0=K
+//'   T   <- 1
+//'   r   <- 0.05
+//'   sig <- 0.2
+//'   K   <- 100
+//'   B   <- 0.85*K
+//'
+//'   k   <- 0.5*sig^2/r;
+//'   d1  <- (r+0.5*sig^2)*T / (sig*sqrt(T))
+//'   d2  <- (r-0.5*sig^2)*T / (sig*sqrt(T))
+//'   d3  <- (2*log(B/K) + (r+0.5*sig^2)*T) / (sig*sqrt(T))
+//'   d4  <- (2*log(B/K) + (r-0.5*sig^2)*T) / (sig*sqrt(T))
+//'
+//'   if(option == 1) {
+//'     val <- K*( pnorm(d1) - exp(-r*T)*pnorm(d2) )
+//'   } else if(option == 2) {
+//'     val <- NA
+//'   } else if(option == 3) {
+//'     val <- K*( pnorm(d1) - pnorm(-d1)*k - exp(-r*T)*(pnorm(d2) - pnorm(d2)*k) )
+//'   } else if(option == 4) {
+//'     val <- K*exp(-r*T)*pnorm(d2)
+//'   } else if(option == 5) {
+//'     val <- K*(                             pnorm(d1) - exp(-r*T)*pnorm(d2) -
+//'               ((K/B)^(1-1/k))*((B^2)/(K^2)*pnorm(d3) - exp(-r*T)*pnorm(d4)) )
+//'   }
+//'
+//'   if(is.na(val)) {
+//'     cat(sprintf("\n Exact value unknown, MLMC value: %f \n", test.res[[option]]$P[1]))
+//'   } else {
+//'     cat(sprintf("\n Exact value: %f, MLMC value: %f \n", val, test.res[[option]]$P[1]))
+//'   }
+//'
 //'   # plot results
 //'   plot(test.res[[option]])
 //' }

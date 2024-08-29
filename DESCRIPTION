@@ -16,9 +16,9 @@ Authors@R: c(
            role = "ctb",
            comment = c(ORCID = "0000-0003-2831-1401")))
 Maintainer: Louis Aslett <louis.aslett@durham.ac.uk>
-Description: An implementation of Multi-level Monte Carlo, Giles (2008)
+Description: An implementation of MLMC (Multi-Level Monte Carlo), Giles (2008)
     <doi:10.1287/opre.1070.0496>, Heinrich (1998) <doi:10.1006/jcom.1998.0471>,
-    for R.  This package builds on the original 'Matlab' and C++ implementations
+    for R.  This package builds on the original 'Matlab' and 'C++' implementations
     by Mike Giles to provide a full MLMC driver and example level samplers.
     Multi-core parallel sampling of levels is provided built-in.
 BugReports: https://github.com/louisaslett/mlmc/issues

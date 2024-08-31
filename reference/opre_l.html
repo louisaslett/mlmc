@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">mlmc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,6 +76,17 @@ The options are:</p><dl><dt>1 = European call;</dt>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>A named list containing:</p><dl><dt><code>sums</code></dt>
+<dd><p>is a vector of length six \(\left(\sum Y_i, \sum Y_i^2, \sum Y_i^3, \sum Y_i^4, \sum X_i, \sum X_i^2\right)\) where \(Y_i\) are iid simulations with expectation \(E[P_0]\) when \(l=0\) and expectation \(E[P_l-P_{l-1}]\) when \(l&gt;0\), and \(X_i\) are iid simulations with expectation \(E[P_l]\).
+                             Note that only the first two components of this are used by the main <code><a href="mlmc.html">mlmc()</a></code> driver, the full vector is used by <code><a href="mlmc.test.html">mlmc.test()</a></code> for convergence tests etc;</p></dd>
+
+          <dt><code>cost</code></dt>
+<dd><p>is a scalar with the total cost of the paths simulated, computed as \(N \times 4^l\) for level \(l\).</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This function is based on GPL-2 'Matlab' code by Mike Giles.</p>
     </div>
@@ -93,7 +104,7 @@ The options are:</p><dl><dt>1 = European call;</dt>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># These are similar to the MLMC tests for the original</span></span></span>
 <span class="r-in"><span><span class="co"># 2008 Operations Research paper, using an Euler-Maruyama</span></span></span>
 <span class="r-in"><span><span class="co"># discretisation with 4^l timesteps on level l.</span></span></span>
@@ -103,6 +114,9 @@ The options are:</p><dl><dt>1 = European call;</dt>
 <span class="r-in"><span><span class="co"># -- two plots are log_2 rather than log_4</span></span></span>
 <span class="r-in"><span><span class="co"># -- the new MLMC driver is a little different</span></span></span>
 <span class="r-in"><span><span class="co"># -- switch to X_0=100 instead of X_0=1</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># Note the following takes quite a while to run, for a toy example see after</span></span></span>
+<span class="r-in"><span><span class="co"># this block.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">N0</span>   <span class="op">&lt;-</span> <span class="fl">1000</span> <span class="co"># initial samples on coarse levels</span></span></span>
 <span class="r-in"><span><span class="va">Lmin</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="co"># minimum refinement level</span></span></span>
@@ -170,13 +184,219 @@ The options are:</p><dl><dt>1 = European call;</dt>
 <span class="r-in"><span>  <span class="co"># plot results</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">test.res</span><span class="op">[[</span><span class="va">option</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ---- Computing European call ---- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **********************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Convergence tests, kurtosis, telescoping sum check ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** using N = 1e+06 samples                            ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **********************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  l   ave(Pf-Pc)    ave(Pf)   var(Pf-Pc)    var(Pf)    kurtosis      check       cost</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0   1.0190e+01  1.0190e+01  1.6101e+02  1.6101e+02  0.0000e+00  0.0000e+00  1.0000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1   2.1145e-01  1.0421e+01  4.4649e+00  2.0152e+02  2.0357e+01  2.2485e-01  4.0000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2   3.0094e-02  1.0443e+01  1.0645e+00  2.1265e+02  1.2213e+01  9.1521e-02  1.6000e+01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3   5.6597e-03  1.0442e+01  2.7227e-01  2.1523e+02  7.6011e+00  7.8199e-02  6.4000e+01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4   1.5063e-03  1.0456e+01  6.8945e-02  2.1684e+02  6.3145e+00  1.4833e-01  2.5600e+02 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5   5.9454e-04  1.0444e+01  1.7243e-02  2.1583e+02  5.9149e+00  1.4228e-01  1.0240e+03 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Linear regression estimates of MLMC parameters ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  alpha = 2.126907  (exponent for MLMC weak convergence)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  beta  = 1.998164  (exponent for MLMC variance) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gamma = 2.000000  (exponent for MLMC cost) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***************************** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** MLMC complexity tests *** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***************************** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   eps      value    mlmc_cost   std_cost  savings     N_l </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------------------- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0050  1.0447e+01  4.622e+07  2.961e+09    64.05  19926135   1657315    404995    102366     25924</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0100  1.0452e+01  8.464e+06  1.837e+08    21.70   4264911    354826     86738     21742</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0200  1.0479e+01  2.144e+06  4.592e+07    21.42   1073618     89427     21938      5647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0500  1.0450e+01  2.462e+05  1.815e+06     7.37    152423     12210      2811</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1000  1.0471e+01  6.718e+04  4.536e+05     6.75     38401      3195      1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Exact value: 10.450584, MLMC value: 10.447168 </span>
+<span class="r-plt img"><img src="opre_l-1.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ---- Computing Asian call ---- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **********************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Convergence tests, kurtosis, telescoping sum check ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** using N = 1e+06 samples                            ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **********************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  l   ave(Pf-Pc)    ave(Pf)   var(Pf-Pc)    var(Pf)    kurtosis      check       cost</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0   5.1039e+00  5.1039e+00  4.0293e+01  4.0293e+01  0.0000e+00  0.0000e+00  1.0000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1   6.0032e-01  5.7066e+00  1.5915e+01  5.7602e+01  4.8836e+00  4.4714e-02  4.0000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2   4.9725e-02  5.7615e+00  1.4242e+00  6.2242e+01  5.9414e+00  1.0466e-01  1.6000e+01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3   5.6281e-03  5.7766e+00  1.5273e-01  6.3428e+01  6.2011e+00  1.9430e-01  6.4000e+01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4   7.9738e-04  5.7513e+00  2.4887e-02  6.3392e+01  5.9353e+00  5.4184e-01  2.5600e+02 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5   2.2619e-04  5.7534e+00  5.3805e-03  6.3495e+01  5.6904e+00  3.8895e-02  1.0240e+03 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Linear regression estimates of MLMC parameters ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  alpha = 2.871053  (exponent for MLMC weak convergence)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  beta  = 2.889940  (exponent for MLMC variance) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gamma = 2.000000  (exponent for MLMC cost) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***************************** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** MLMC complexity tests *** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***************************** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   eps      value    mlmc_cost   std_cost  savings     N_l </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------------------- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0050  5.7643e+00  2.728e+07  2.165e+08     7.94   7656043   2406391    360110     66135</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0100  5.7582e+00  6.791e+06  5.413e+07     7.97   1908674    599483     89531     16443</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0200  5.7394e+00  1.718e+06  1.353e+07     7.88    481200    151668     22704      4170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0500  5.7950e+00  1.952e+05  5.311e+05     2.72     64857     20311      3066</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1000  5.7332e+00  5.266e+04  1.328e+05     2.52     16090      5142      1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Exact value unknown, MLMC value: 5.764282 </span>
+<span class="r-plt img"><img src="opre_l-2.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ---- Computing lookback call ---- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **********************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Convergence tests, kurtosis, telescoping sum check ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** using N = 1e+06 samples                            ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **********************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  l   ave(Pf-Pc)    ave(Pf)   var(Pf-Pc)    var(Pf)    kurtosis      check       cost</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0   2.0658e+01  2.0658e+01  1.7529e+02  1.7529e+02  0.0000e+00  0.0000e+00  1.0000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1   -2.5116e+00  1.8108e+01  1.3943e+01  1.9878e+02  4.4978e+00  4.0534e-01  4.0000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2   -6.9227e-01  1.7453e+01  4.8871e+00  2.0963e+02  4.0202e+00  3.9640e-01  1.6000e+01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3   -1.8064e-01  1.7268e+01  1.4316e+00  2.1166e+02  3.7982e+00  4.7191e-02  6.4000e+01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4   -4.4695e-02  1.7256e+01  3.8803e-01  2.1360e+02  3.7314e+00  3.6932e-01  2.5600e+02 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5   -1.1395e-02  1.7228e+01  1.0062e-01  2.1308e+02  3.7048e+00  1.8273e-01  1.0240e+03 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Linear regression estimates of MLMC parameters ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  alpha = 1.952122  (exponent for MLMC weak convergence)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  beta  = 1.788375  (exponent for MLMC variance) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gamma = 2.000000  (exponent for MLMC cost) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***************************** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** MLMC complexity tests *** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***************************** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   eps      value    mlmc_cost   std_cost  savings     N_l </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------------------- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0100  1.7218e+01  4.764e+07  2.909e+09    61.06  10553225   1490221    439115    118801     31047      8353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0200  1.7230e+01  1.199e+07  7.273e+08    60.67   2649178    375181    110072     29909      7829      2107</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0500  1.7222e+01  1.299e+06  2.916e+07    22.45    348339     49126     14458      3950      1054</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1000  1.7344e+01  3.310e+05  7.291e+06    22.03     88103     12417      3620      1018       274</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.2000  1.7377e+01  5.614e+04  4.515e+05     8.04     17523      2469      1000       199</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Exact value: 17.216802, MLMC value: 17.217921 </span>
+<span class="r-plt img"><img src="opre_l-3.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ---- Computing digital call ---- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **********************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Convergence tests, kurtosis, telescoping sum check ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** using N = 4e+06 samples                            ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **********************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  l   ave(Pf-Pc)    ave(Pf)   var(Pf-Pc)    var(Pf)    kurtosis      check       cost</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0   5.6990e+01  5.6990e+01  2.1732e+03  2.1732e+03  0.0000e+00  0.0000e+00  1.0000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1   -2.7915e+00  5.4128e+01  2.5774e+02  2.2190e+03  3.2106e+01  4.2415e-01  4.0000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2   -6.9927e-01  5.3474e+01  1.6554e+02  2.2271e+03  5.4194e+01  2.7650e-01  1.6000e+01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3   -1.6958e-01  5.3303e+01  8.6449e+01  2.2291e+03  1.0456e+02  7.1852e-03  6.4000e+01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4   -4.6158e-02  5.3230e+01  4.3383e+01  2.2300e+03  2.0854e+02  1.7451e-01  2.5600e+02 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5   -1.0844e-02  5.3216e+01  2.1435e+01  2.2301e+03  4.2211e+02  2.4322e-02  1.0240e+03 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  WARNING: kurtosis on finest level = 422.114439 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  indicates MLMC correction dominated by a few rare paths; </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  for information on the connection to variance of sample variances,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  see http://mathworld.wolfram.com/SampleVarianceDistribution.html</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Linear regression estimates of MLMC parameters ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  alpha = 1.993719  (exponent for MLMC weak convergence)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  beta  = 0.910770  (exponent for MLMC variance) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gamma = 2.000000  (exponent for MLMC cost) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***************************** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** MLMC complexity tests *** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***************************** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   eps      value    mlmc_cost   std_cost  savings     N_l </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------------------- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0200  5.3256e+01  7.140e+08  7.612e+09    10.66  71927300  12390737   4961618   1801584    632022    230472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0500  5.3235e+01  5.430e+07  3.045e+08     5.61   7934620   1367595    549185    204028     74401</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1000  5.3231e+01  1.320e+07  7.612e+07     5.77   1955414    337337    135584     49074     17895</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.2000  5.3392e+01  1.362e+06  4.755e+06     3.49    314162     53918     20684      7827</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.5000  5.2787e+01  2.450e+05  7.609e+05     3.11     53156      9434      3822      1452</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Exact value: 53.232482, MLMC value: 53.256370 </span>
+<span class="r-plt img"><img src="opre_l-4.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ---- Computing Heston model ---- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **********************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Convergence tests, kurtosis, telescoping sum check ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** using N = 2e+06 samples                            ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **********************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  l   ave(Pf-Pc)    ave(Pf)   var(Pf-Pc)    var(Pf)    kurtosis      check       cost</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0   1.0207e+01  1.0207e+01  1.6089e+02  1.6089e+02  0.0000e+00  0.0000e+00  1.0000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1   2.1326e-01  1.0420e+01  3.5529e+00  1.9071e+02  1.4748e+01  2.8790e-03  4.0000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2   3.4245e-02  1.0438e+01  3.6981e+00  1.9162e+02  7.3462e+00  2.6720e-01  1.6000e+01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3   7.2058e-03  1.0447e+01  1.7474e+00  1.9185e+02  6.1217e+00  3.7705e-02  6.4000e+01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4   1.0090e-03  1.0458e+01  5.1187e-01  1.9171e+02  5.5768e+00  1.5339e-01  2.5600e+02 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5   9.6171e-05  1.0474e+01  1.3363e-01  1.9202e+02  5.4543e+00  2.7100e-01  1.0240e+03 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Linear regression estimates of MLMC parameters ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  alpha = 2.731437  (exponent for MLMC weak convergence)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  beta  = 1.231829  (exponent for MLMC variance) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gamma = 2.000000  (exponent for MLMC cost) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***************************** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** MLMC complexity tests *** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***************************** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   eps      value    mlmc_cost   std_cost  savings     N_l </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------------------- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0050  1.0454e+01  6.432e+07  6.548e+08    10.18  23506656   1743584    890673    305993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0100  1.0450e+01  1.610e+07  1.637e+08    10.17   5881570    436419    222705     76735</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0200  1.0440e+01  1.968e+06  1.022e+07     5.19   1047180     75445     38698</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0500  1.0471e+01  3.138e+05  1.635e+06     5.21    163782     12814      6170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1000  1.0431e+01  8.048e+04  4.088e+05     5.08     42297      3191      1589</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Exact value unknown, MLMC value: 10.454337 </span>
+<span class="r-plt img"><img src="opre_l-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The level sampler can be called directly to retrieve the relevant level sums:</span></span></span>
 <span class="r-in"><span><span class="fu">opre_l</span><span class="op">(</span>l <span class="op">=</span> <span class="fl">7</span>, N <span class="op">=</span> <span class="fl">10</span>, option <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $sums</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1.064477e-02  2.275113e-02 -6.541730e-04  1.403334e-04  1.485436e+02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6]  4.556201e+03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.894700e-03  8.694623e-03 -1.054083e-04  2.305858e-05  3.726061e+01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6]  3.477253e+02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $cost</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 163840</span>

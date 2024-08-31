@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">mlmc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +80,10 @@ Must be \(&gt; 0\).</p></dd>
        It must take at least two arguments, the first is the level number to be simulated and the second the number of paths.
        Additional arguments can be taken if desired: all additional <code>...</code> arguments to this function are forwarded to the user defined <code>mlmc_l</code> function.</p>
 <p>The user supplied function should return a named list containing one element named <code>sums</code> and second named <code>cost</code>, where:</p><dl><dt><code>sums</code></dt>
-<dd><p>is a vector of length two \(\left(\sum Y_i, \sum Y_i^2\right)\) where \(Y_i\) are iid simulations with expectation \(E[P_0]\) when \(l=0\) and expectation \(E[P_l-P_{l-1}]\) when \(l&gt;0\).</p></dd>
+<dd><p>is a vector of length at least two.
+                            The first two elements should be \(\left(\sum Y_i, \sum Y_i^2\right)\) where \(Y_i\) are iid simulations with expectation \(E[P_0]\) when \(l=0\) and expectation \(E[P_l-P_{l-1}]\) when \(l&gt;0\).
+                            Note that typically the user supplied level sampler will actually return a vector of length six, also enabling use of the <code><a href="mlmc.test.html">mlmc.test()</a></code> function to perform convergence tests, kurtosis, and telescoping sum checks.
+                            See <code><a href="mlmc.test.html">mlmc.test()</a></code> for the definition of these remaining four elements.</p></dd>
 
          <dt><code>cost</code></dt>
 <dd><p>is a scalar with the total cost of the paths simulated.
@@ -118,7 +121,7 @@ If <code>NA</code> then <code>gamma</code> will be estimated.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list containing:</p><dl><dt><code>P</code></dt>
+    <p>A named list containing:</p><dl><dt><code>P</code></dt>
 <dd><p>The MLMC estimate;</p></dd>
 
   <dt><code>Nl</code></dt>
@@ -163,10 +166,10 @@ The inclusion of the level \(l\) in the superscript \((l,n)\) indicates that the
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">mlmc</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">1000</span>, <span class="fl">0.01</span>, <span class="va">opre_l</span>, option <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $P</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.44813</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.4489</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Nl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4294178  357038  106626   22315</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4274476  355282  103974   22143</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Cl</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1  4 16 64</span>
@@ -174,13 +177,13 @@ The inclusion of the level \(l\) in the superscript \((l,n)\) indicates that the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">mlmc</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">1000</span>, <span class="fl">0.01</span>, <span class="va">mcqmc06_l</span>, option <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $P</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.43656</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.44118</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Nl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3018378   56809   28405    8180    3002    1100     378     146</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3049661   58324   29162    8185    3090    1152     441     163      56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Cl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1]   1   2   4   8  16  32  64 128</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1]   1   2   4   8  16  32  64 128 256</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

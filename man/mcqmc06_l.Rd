@@ -35,7 +35,7 @@ Financial options based on scalar geometric Brownian motion, similar to Mike Gil
 This function is based on GPL-2 C++ code by Mike Giles.
 }
 \examples{
-\dontrun{
+\donttest{
 # These are similar to the MLMC tests for the MCQMC06 paper
 # using a Milstein discretisation with 2^l timesteps on level l
 #
@@ -44,6 +44,9 @@ This function is based on GPL-2 C++ code by Mike Giles.
 # -- change in cost calculation
 # -- different random number generation
 # -- switch to S_0=100
+#
+# Note the following takes quite a while to run, for a toy example see after
+# this block.
 
 N0   <- 200 # initial samples on coarse levels
 Lmin <- 2 # minimum refinement level

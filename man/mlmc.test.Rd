@@ -70,7 +70,7 @@ See one of the example level sampler functions (e.g. \code{\link[=opre_l]{opre_l
 This function is based on GPL-2 'Matlab' code by Mike Giles.
 }
 \examples{
-\dontrun{
+\donttest{
 # Example calls with realistic arguments
 # Financial options using an Euler-Maruyama discretisation
 tst <- mlmc.test(opre_l, N = 2000000,

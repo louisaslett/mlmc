@@ -31,7 +31,7 @@
 #' Giles, M.B. (2015) 'Multilevel Monte Carlo methods', \emph{Acta Numerica}, 24, pp. 259–328. Available at: \doi{10.1017/S096249291500001X}.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' tst <- mlmc.test(opre_l, N = 2000000,
 #'                  L = 5, N0 = 1000,
 #'                  eps.v = c(0.005, 0.01, 0.02, 0.05, 0.1),

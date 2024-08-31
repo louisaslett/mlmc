@@ -48,7 +48,7 @@ mu <- function(x, h) {
 #' Giles, M.B. (2008) 'Multilevel Monte Carlo Path Simulation', \emph{Operations Research}, 56(3), pp. 607–617. Available at: \doi{10.1287/opre.1070.0496}.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # These are similar to the MLMC tests for the original
 #' # 2008 Operations Research paper, using an Euler-Maruyama
 #' # discretisation with 4^l timesteps on level l.
@@ -58,6 +58,9 @@ mu <- function(x, h) {
 #' # -- two plots are log_2 rather than log_4
 #' # -- the new MLMC driver is a little different
 #' # -- switch to X_0=100 instead of X_0=1
+#' #
+#' # Note the following takes quite a while to run, for a toy example see after
+#' # this block.
 #'
 #' N0   <- 1000 # initial samples on coarse levels
 #' Lmin <- 2 # minimum refinement level

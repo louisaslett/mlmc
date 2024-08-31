@@ -57,7 +57,7 @@
 #' @author Tigran Nagapetyan <nagapetyan@stats.ox.ac.uk>
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Example calls with realistic arguments
 #' # Financial options using an Euler-Maruyama discretisation
 #' tst <- mlmc.test(opre_l, N = 2000000,

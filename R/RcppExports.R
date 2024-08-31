@@ -35,7 +35,7 @@
 #' Giles, M. (2008) 'Improved Multilevel Monte Carlo Convergence using the Milstein Scheme', in A. Keller, S. Heinrich, and H. Niederreiter (eds) \emph{Monte Carlo and Quasi-Monte Carlo Methods 2006}. Berlin, Heidelberg: Springer, pp. 343–358. Available at: \doi{10.1007/978-3-540-74496-2_20}.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # These are similar to the MLMC tests for the MCQMC06 paper
 #' # using a Milstein discretisation with 2^l timesteps on level l
 #' #
@@ -44,6 +44,9 @@
 #' # -- change in cost calculation
 #' # -- different random number generation
 #' # -- switch to S_0=100
+#' #
+#' # Note the following takes quite a while to run, for a toy example see after
+#' # this block.
 #'
 #' N0   <- 200 # initial samples on coarse levels
 #' Lmin <- 2 # minimum refinement level

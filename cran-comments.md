@@ -4,6 +4,7 @@ This is a resubmission in light of the kind CRAN review by Beni Altmann.
 In this version I have:
 
 * Added acronym explanation and single quoted 'C++' in DESCRIPTION, as requested.
+* Added return value information to `opre_l`, `mcqml06_l`, and `plot.mlmc.test`. Thank you very much for identifying this (CRAN review is so important and works!), I thought I'd been so careful and am horrified these slipped through.
 
 
 ## R CMD check results

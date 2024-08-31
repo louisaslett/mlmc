@@ -23,6 +23,8 @@
 #' @param ...
 #'        additional arguments which are passed on to plotting functions.
 #'
+#' @return No return value, called for side effects.
+#'
 #' @author Louis Aslett <louis.aslett@durham.ac.uk>
 #'
 #' @references

@@ -27,6 +27,12 @@ using namespace Rcpp;
 //'          \item{5 = barrier call.}{}
 //'        }
 //'
+//' @return A named list containing: \describe{
+//'           \item{\code{sums}}{is a vector of length six \eqn{\left(\sum Y_i, \sum Y_i^2, \sum Y_i^3, \sum Y_i^4, \sum X_i, \sum X_i^2\right)} where \eqn{Y_i} are iid simulations with expectation \eqn{E[P_0]} when \eqn{l=0} and expectation \eqn{E[P_l-P_{l-1}]} when \eqn{l>0}, and \eqn{X_i} are iid simulations with expectation \eqn{E[P_l]}.
+//'                              Note that only the first two components of this are used by the main \code{\link[=mlmc]{mlmc()}} driver, the full vector is used by \code{\link[=mlmc.test]{mlmc.test()}} for convergence tests etc;}
+//'           \item{\code{cost}}{is a scalar with the total cost of the paths simulated, computed as \eqn{N \times 2^l} for level \eqn{l}.}
+//'         }
+//'
 //' @author Louis Aslett <louis.aslett@durham.ac.uk>
 //' @author Mike Giles <Mike.Giles@maths.ox.ac.uk>
 //'

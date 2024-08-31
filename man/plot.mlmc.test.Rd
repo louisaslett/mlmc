@@ -23,6 +23,9 @@ The options are: \describe{
 
 \item{...}{additional arguments which are passed on to plotting functions.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 Produces diagnostic plots on the result of an \code{\link{mlmc.test}} function call.
 }

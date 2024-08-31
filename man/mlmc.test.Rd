@@ -24,7 +24,9 @@ mlmc.test(
 
        The user supplied function should return a named list containing one element named \code{sums} and second named \code{cost}, where:
        \describe{
-         \item{\code{sums}}{is a vector of length two \eqn{\left(\sum Y_i, \sum Y_i^2\right)} where \eqn{Y_i} are iid simulations with expectation \eqn{E[P_0]} when \eqn{l=0} and expectation \eqn{E[P_l-P_{l-1}]} when \eqn{l>0}.}
+         \item{\code{sums}}{is a vector of length six \eqn{\left(\sum Y_i, \sum Y_i^2, \sum Y_i^3, \sum Y_i^4, \sum X_i, \sum X_i^2\right)} where \eqn{Y_i} are iid simulations with expectation \eqn{E[P_0]} when \eqn{l=0} and expectation \eqn{E[P_l-P_{l-1}]} when \eqn{l>0}, and \eqn{X_i} are iid simulations with expectation \eqn{E[P_l]}.
+                            Note that this differs from the main \code{\link[=mlmc]{mlmc()}} driver, which only requires the first two of these elements in order to calculate the estimate.
+                            The remaining elements are required by \code{mlmc.test()} since they are used for convergence tests, kurtosis, and telescoping sum checks.}
          \item{\code{cost}}{is a scalar with the total cost of the paths simulated.
                             For example, in the financial options samplers included in this package, this is calculated as \eqn{NM^l}, where \eqn{N} is the number of paths requested in the call to the user function \code{mlmc_l}, \eqn{M} is the refinement cost factor (\eqn{M=2} for \code{\link[=mcqmc06_l]{mcqmc06_l()}} and \eqn{M=4} for \code{\link[=opre_l]{opre_l()}}), and \eqn{l} is the level being sampled.}
        }
@@ -63,7 +65,7 @@ An \code{mlmc.test} object which contains all the computed diagnostic values.
 Computes a suite of diagnostic values for an MLMC estimation problem.
 }
 \details{
-See one of the example level sampler functions (e.g. \code{\link{opre_l}}) for example usage.
+See one of the example level sampler functions (e.g. \code{\link[=opre_l]{opre_l()}}) for example usage.
 
 This function is based on GPL-2 'Matlab' code by Mike Giles.
 }

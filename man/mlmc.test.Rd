@@ -33,14 +33,14 @@ mlmc.test(
 
        See the function (and source code of) \code{\link[=opre_l]{opre_l()}} and \code{\link[=mcqmc06_l]{mcqmc06_l()}} in this package for an example of user supplied level samplers.}
 
-\item{N}{number of samples to use in the tests}
+\item{N}{number of samples to use in convergence tests, kurtosis, telescoping sum check.}
 
-\item{L}{number of levels to use in onvergence tests, kurtosis, telescoping sum check.}
+\item{L}{number of levels to use in convergence tests, kurtosis, telescoping sum check.}
 
-\item{N0}{initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added.
+\item{N0}{initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added in the complexity tests.
 Must be \eqn{> 0}.}
 
-\item{eps.v}{a vector of one or more target accuracies for the tests.
+\item{eps.v}{a vector of one or more target accuracies for the complexity tests.
 Must all be \eqn{> 0}.}
 
 \item{Lmin}{the minimum level of refinement for complexity tests.

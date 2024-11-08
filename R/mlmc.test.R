@@ -25,14 +25,14 @@
 #'
 #'        See the function (and source code of) \code{\link[=opre_l]{opre_l()}} and \code{\link[=mcqmc06_l]{mcqmc06_l()}} in this package for an example of user supplied level samplers.
 #' @param N
-#'        number of samples to use in the tests
+#'        number of samples to use in convergence tests, kurtosis, telescoping sum check.
 #' @param L
-#'        number of levels to use in onvergence tests, kurtosis, telescoping sum check.
+#'        number of levels to use in convergence tests, kurtosis, telescoping sum check.
 #' @param N0
-#'        initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added.
+#'        initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added in the complexity tests.
 #'        Must be \eqn{> 0}.
 #' @param eps.v
-#'        a vector of one or more target accuracies for the tests.
+#'        a vector of one or more target accuracies for the complexity tests.
 #'        Must all be \eqn{> 0}.
 #' @param Lmin
 #'        the minimum level of refinement for complexity tests.
@@ -110,8 +110,9 @@ mlmc.test <- function(mlmc_l, N, L, N0, eps.v, Lmin, Lmax, parallel = NA, silent
   if(Lmax<Lmin) {
     stop("must have Lmax >= Lmin.")
   }
-  if(N0<=0 || eps<=0){
-    stop("N0 and eps must be greater than zero.")
+  if(N0<=0 || any(eps.v<=0)) {
+    stop("N0 and eps.v must be greater than zero.")
+  }
   }
   if(!is.na(parallel) && parallel<=0) {
     stop("if specified, parallel must be greater than zero.")

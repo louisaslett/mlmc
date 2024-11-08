@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">mlmc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +29,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Multi-level Monte Carlo estimation test suite</h1>
-      <small class="dont-index">Source: <a href="https://github.com/louisaslett/mlmc/blob/v2.0.2/R/mlmc.test.R" class="external-link"><code>R/mlmc.test.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/louisaslett/mlmc/blob/master/R/mlmc.test.R" class="external-link"><code>R/mlmc.test.R</code></a></small>
       <div class="d-none name"><code>mlmc.test.Rd</code></div>
     </div>
 
@@ -47,6 +47,9 @@
 <span>  <span class="va">eps.v</span>,</span>
 <span>  <span class="va">Lmin</span>,</span>
 <span>  <span class="va">Lmax</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  beta <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  gamma <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  parallel <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -75,31 +78,49 @@
 
 
 <dt id="arg-n">N<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
-<dd><p>number of samples to use in the tests</p></dd>
+<dd><p>number of samples to use in convergence tests, kurtosis, telescoping sum check.</p></dd>
 
 
 <dt id="arg-l">L<a class="anchor" aria-label="anchor" href="#arg-l"></a></dt>
-<dd><p>number of levels to use in the tests</p></dd>
+<dd><p>number of levels to use in convergence tests, kurtosis, telescoping sum check.</p></dd>
 
 
 <dt id="arg-n-">N0<a class="anchor" aria-label="anchor" href="#arg-n-"></a></dt>
-<dd><p>initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added.
+<dd><p>initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added in the complexity tests.
 Must be \(&gt; 0\).</p></dd>
 
 
 <dt id="arg-eps-v">eps.v<a class="anchor" aria-label="anchor" href="#arg-eps-v"></a></dt>
-<dd><p>a vector of one or more target accuracies for the tests.
+<dd><p>a vector of one or more target accuracies for the complexity tests.
 Must all be \(&gt; 0\).</p></dd>
 
 
 <dt id="arg-lmin">Lmin<a class="anchor" aria-label="anchor" href="#arg-lmin"></a></dt>
-<dd><p>the minimum level of refinement.
+<dd><p>the minimum level of refinement for complexity tests.
 Must be \(\ge 2\).</p></dd>
 
 
 <dt id="arg-lmax">Lmax<a class="anchor" aria-label="anchor" href="#arg-lmax"></a></dt>
-<dd><p>the maximum level of refinement.
+<dd><p>the maximum level of refinement for complexity tests.
 Must be \(\ge\) <code>Lmin</code>.</p></dd>
+
+
+<dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
+<dd><p>the weak error, \(O(2^{-\alpha l})\).
+Must be \(&gt; 0\) if specified.
+If <code>NA</code> then <code>alpha</code> will be estimated.</p></dd>
+
+
+<dt id="arg-beta">beta<a class="anchor" aria-label="anchor" href="#arg-beta"></a></dt>
+<dd><p>the variance, \(O(2^{-\beta l})\).
+Must be \(&gt; 0\) if specified.
+If <code>NA</code> then <code>beta</code> will be estimated.</p></dd>
+
+
+<dt id="arg-gamma">gamma<a class="anchor" aria-label="anchor" href="#arg-gamma"></a></dt>
+<dd><p>the sample cost, \(O(2^{\gamma l})\).
+Must be \(&gt; 0\) if specified.
+If <code>NA</code> then <code>gamma</code> will be estimated.</p></dd>
 
 
 <dt id="arg-parallel">parallel<a class="anchor" aria-label="anchor" href="#arg-parallel"></a></dt>
@@ -395,7 +416,7 @@ This is also done for the MLMC complexity tests by passing the <code>parallel</c
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

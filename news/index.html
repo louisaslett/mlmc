@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">mlmc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,11 +29,17 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/louisaslett/mlmc/blob/v2.0.2/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/louisaslett/mlmc/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.0.1" id="mlmc-201">mlmc 2.0.1<a class="anchor" aria-label="anchor" href="#mlmc-201"></a></h2>
+<h2 class="pkg-version" data-toc-text="2.1.0" id="mlmc-210">mlmc 2.1.0<a class="anchor" aria-label="anchor" href="#mlmc-210"></a></h2>
+<ul><li>Add parameter value checks in <code>mlmc.test</code>.</li>
+<li>Allow user to specify <code>alpha</code>, <code>beta</code>, and <code>gamma</code> to <code>mlmc.test</code>, rather than forcing estimation by linear regression. Note this is a departure from the original Matlab code, but if they are left unspecified then the same results as under Matlab are reproduced.</li>
+<li>Improve specificity of some argument documentation in <code>mlmc.test</code>.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.0.2" id="mlmc-202">mlmc 2.0.2<a class="anchor" aria-label="anchor" href="#mlmc-202"></a></h2><p class="text-muted">CRAN release: 2024-09-04</p>
 <ul><li>Package was removed from CRAN because I didn’t notice my old Oxford email address wasn’t forwarding any longer. In order to comply with CRAN changes, the C++ routines are now registered and maintainer info updated to my Durham email.</li>
 <li>The Matlab driver code by Mike Giles has been quite substantially updated, so this major version bump in the R package addresses updating this code to match the new driver API. None of these sub-bullets are bug fixes, merely changing to match the new best-practice for the MLMC driver designed by Mike Giles. In particular:
 <ul><li>User level sampling functions must now also return the total cost of all samples simulated at that level. Therefore user level sampler functions must return a list with a <code>sums</code> and <code>cost</code> element.</li>
@@ -61,7 +67,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

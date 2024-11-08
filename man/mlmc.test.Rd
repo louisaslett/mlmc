@@ -12,6 +12,9 @@ mlmc.test(
   eps.v,
   Lmin,
   Lmax,
+  alpha = NA,
+  beta = NA,
+  gamma = NA,
   parallel = NA,
   silent = FALSE,
   ...
@@ -48,6 +51,18 @@ Must be \eqn{\ge 2}.}
 
 \item{Lmax}{the maximum level of refinement for complexity tests.
 Must be \eqn{\ge} \code{Lmin}.}
+
+\item{alpha}{the weak error, \eqn{O(2^{-\alpha l})}.
+Must be \eqn{> 0} if specified.
+If \code{NA} then \code{alpha} will be estimated.}
+
+\item{beta}{the variance, \eqn{O(2^{-\beta l})}.
+Must be \eqn{> 0} if specified.
+If \code{NA} then \code{beta} will be estimated.}
+
+\item{gamma}{the sample cost, \eqn{O(2^{\gamma l})}.
+Must be \eqn{> 0} if specified.
+If \code{NA} then \code{gamma} will be estimated.}
 
 \item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel processes.
 This is done for the convergence tests section by splitting the \code{N} samples as evenly as possible across cores when sampling each level.

@@ -12,21 +12,21 @@ An implementation of Multi-level Monte Carlo for R.  This package builds on the 
 Please feel free to:
 
 * submit suggestions and bug-reports at: <https://github.com/louisaslett/mlmc/issues>
-* compose an e-mail to: <louis.aslett@durham.ac.uk>, <nagapetyan@stats.ox.ac.uk> or <vollmer@stats.ox.ac.uk>
+* compose an e-mail to: <louis.aslett@durham.ac.uk>
 
 ## Install
 
-You can install the latest release directly from
+You can install the latest stable release directly from
 [CRAN](https://cran.r-project.org/package=mlmc).
 
 ```r
 install.packages("mlmc")
 ```
 
-Or you can install the latest binary from r-universe:
+Or you can install the latest release candidate binary from r-universe:
 
 ```r
-install.packages("mlmc", repos = c("https://louisaslett.r-universe.dev", "https://cloud.r-project.org"))
+install.packages("mlmc", repos = c("https://louisaslett.r-universe.dev", options("repos")[[1]]))
 ```
 
 ## Install development version (not recommended)
@@ -52,7 +52,7 @@ Louis Aslett was supported by the i-like programme grant (EPSRC grant reference 
 
 If you use this software, please cite:
 
-Aslett, L. J. M., Giles, M. B., Nagapetyan, T. and Vollmer, S. J. (2016), *mlmc: Multi-Level Monte Carlo*.  R package. <https://CRAN.R-project.org/package=mlmc>
+Aslett, L. J. M., Giles, M. B., Nagapetyan, T. and Vollmer, S. J. (2016), *mlmc: Multi-Level Monte Carlo*.  R package. DOI: 10.32614/CRAN.package.mlmc <https://CRAN.R-project.org/package=mlmc>
 
 ```bibtex
 @Manual{mlmcpkg,
@@ -60,7 +60,8 @@ Aslett, L. J. M., Giles, M. B., Nagapetyan, T. and Vollmer, S. J. (2016), *mlmc:
   author = {Aslett, L. J. M. and Giles, M. B. and Nagapetyan, T. and Vollmer, S. J.},
   year = {2016},
   note = {R package},
-  url = {https://CRAN.R-project.org/package=mlmc},
+  doi = {10.32614/CRAN.package.mlmc},
+  url = {https://CRAN.R-project.org/package=mlmc}
 }
 ```
 

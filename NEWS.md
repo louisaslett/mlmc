@@ -1,4 +1,11 @@
-# mlmc 2.0.1
+# mlmc 2.1.0
+
+* Add parameter value checks in `mlmc.test`.
+* Allow user to specify `alpha`, `beta`, and `gamma` to `mlmc.test`, rather than forcing estimation by linear regression.
+  Note this is a departure from the original Matlab code, but if they are left unspecified then the same results as under Matlab are reproduced.
+* Improve specificity of some argument documentation in `mlmc.test`.
+
+# mlmc 2.0.2
 
 * Package was removed from CRAN because I didn't notice my old Oxford email address wasn't forwarding any longer.
   In order to comply with CRAN changes, the C++ routines are now registered and maintainer info updated to my Durham email.

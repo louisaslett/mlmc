@@ -7,13 +7,21 @@ type: software
 authors:
   - given-names: Louis J. M.
     family-names: Aslett
+    orcid: 'https://orcid.org/0000-0003-2211-233X'
   - given-names: Mike B.
     family-names: Giles
+    orcid: 'https://orcid.org/0000-0002-5445-3721'
   - given-names: Tigran
     family-names: Nagapetyan
+    orcid: 'https://orcid.org/0000-0002-0379-1157'
   - given-names: Sebastian J.
     family-names: Vollmer
+    orcid: 'https://orcid.org/0000-0003-2831-1401'
+identifiers:
+  - type: doi
+    value: 10.32614/CRAN.package.mlmc
 repository-code: 'https://github.com/louisaslett/mlmc'
+url: 'https://mlmc.louisaslett.com/'
 repository-artifact: 'https://CRAN.R-project.org/package=mlmc'
 license: GPL-2.0
 date-released: '2016-04-24'
@@ -22,13 +30,18 @@ preferred-citation:
   authors:
     - given-names: Louis J. M.
       family-names: Aslett
+      orcid: 'https://orcid.org/0000-0003-2211-233X'
     - given-names: Mike B.
       family-names: Giles
+      orcid: 'https://orcid.org/0000-0002-5445-3721'
     - given-names: Tigran
       family-names: Nagapetyan
+      orcid: 'https://orcid.org/0000-0002-0379-1157'
     - given-names: Sebastian J.
       family-names: Vollmer
-  title: "mlmc: Multi-Level Monte Carlo"
+      orcid: 'https://orcid.org/0000-0003-2831-1401'
+  title: 'mlmc: Multi-Level Monte Carlo'
   year: 2016
-  note: "R package"
-  url: "https://CRAN.R-project.org/package=mlmc"
+  journal: 'R package'
+  url: 'https://CRAN.R-project.org/package=mlmc'
+  doi: '10.32614/CRAN.package.mlmc'

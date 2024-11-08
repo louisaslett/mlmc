@@ -35,7 +35,7 @@ mlmc.test(
 
 \item{N}{number of samples to use in the tests}
 
-\item{L}{number of levels to use in the tests}
+\item{L}{number of levels to use in onvergence tests, kurtosis, telescoping sum check.}
 
 \item{N0}{initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added.
 Must be \eqn{> 0}.}
@@ -43,10 +43,10 @@ Must be \eqn{> 0}.}
 \item{eps.v}{a vector of one or more target accuracies for the tests.
 Must all be \eqn{> 0}.}
 
-\item{Lmin}{the minimum level of refinement.
+\item{Lmin}{the minimum level of refinement for complexity tests.
 Must be \eqn{\ge 2}.}
 
-\item{Lmax}{the maximum level of refinement.
+\item{Lmax}{the maximum level of refinement for complexity tests.
 Must be \eqn{\ge} \code{Lmin}.}
 
 \item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel processes.

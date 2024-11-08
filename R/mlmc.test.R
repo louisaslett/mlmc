@@ -27,7 +27,7 @@
 #' @param N
 #'        number of samples to use in the tests
 #' @param L
-#'        number of levels to use in the tests
+#'        number of levels to use in onvergence tests, kurtosis, telescoping sum check.
 #' @param N0
 #'        initial number of samples which are used for the first 3 levels and for any subsequent levels which are automatically added.
 #'        Must be \eqn{> 0}.
@@ -35,17 +35,17 @@
 #'        a vector of one or more target accuracies for the tests.
 #'        Must all be \eqn{> 0}.
 #' @param Lmin
-#'        the minimum level of refinement.
+#'        the minimum level of refinement for complexity tests.
 #'        Must be \eqn{\ge 2}.
 #' @param Lmax
-#'        the maximum level of refinement.
+#'        the maximum level of refinement for complexity tests.
 #'        Must be \eqn{\ge} \code{Lmin}.
-#' @param silent
-#'        set to TRUE to supress running output (identical output can still be printed by printing the return result)
 #' @param parallel
 #'        if an integer is supplied, R will fork \code{parallel} parallel processes.
 #'        This is done for the convergence tests section by splitting the \code{N} samples as evenly as possible across cores when sampling each level.
 #'        This is also done for the MLMC complexity tests by passing the \code{parallel} argument on to the \code{\link[=mlmc]{mlmc()}} driver when targeting each accuracy level in \code{eps}.
+#' @param silent
+#'        set to TRUE to supress running output (identical output can still be printed by printing the return result)
 #' @param ...
 #'        additional arguments which are passed on when the user supplied \code{mlmc_l} function is called
 #'
@@ -96,6 +96,26 @@
 mlmc.test <- function(mlmc_l, N, L, N0, eps.v, Lmin, Lmax, parallel = NA, silent = FALSE, ...) {
   if(silent)
     cat <- function(...) { }
+
+  # check parameters are acceptable
+  if(N<=0) {
+    stop("N must be > 0.")
+  }
+  if(L<0) {
+    stop("L must be >= 0.")
+  }
+  if(Lmin<2) {
+    stop("Lmin must be >= 2.")
+  }
+  if(Lmax<Lmin) {
+    stop("must have Lmax >= Lmin.")
+  }
+  if(N0<=0 || eps<=0){
+    stop("N0 and eps must be greater than zero.")
+  }
+  if(!is.na(parallel) && parallel<=0) {
+    stop("if specified, parallel must be greater than zero.")
+  }
 
   res <- within(list(), {
     N <- N

@@ -111,6 +111,19 @@ mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha = NA, beta = NA, gamma = NA,
     stop("if specified, gamma must be greater than zero.  Set gamma to NA to automatically estimate.")
   }
 
+  # check user supplied mlmc function on fastest level for just 1 simulation is
+  # returning the correct shape of list(sums, cost)
+  res.tst <- mlmc_l(0, 1, ...)
+  if(!is.list(res.tst)) {
+    stop("user suppled mlmc sampler must return a list.")
+  } else if(!identical(sort(names(res.tst)), c("cost", "sums"))) {
+    stop("user suppled mlmc sampler must return a list with elements named sums and cost.")
+  } else if(!is.numeric(res.tst$sums) || length(res.tst$sums) < 2) {
+    stop("sums returned by user suppled mlmc sampler must be at least length 2.")
+  } else if(!is.numeric(res.tst$cost) || length(res.tst$cost) != 1) {
+    stop("cost returned by user suppled mlmc sampler must be length 1.")
+  }
+
   # initialise the MLMC run
   est.alpha <- is.na(alpha)
   alpha <- ifelse(is.na(alpha), 0, alpha)
@@ -148,10 +161,10 @@ mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha = NA, beta = NA, gamma = NA,
         x <- mlmc_l(l, dNl, ...)
         c(x$sums, x$cost)
       }, l = par.vars$l, dNl = par.vars$dNl, ..., mc.preschedule = FALSE, mc.cores = parallel)
-      sums <- res[1:2,]
-      cost <- res[3,]
+      sums <- res[-nrow(res),,drop = FALSE]
+      cost <- res[ nrow(res),]
       Nl <- Nl+dNl
-      suml[,!(dNl==0)] <- suml[,!(dNl==0)] + sums[1:2,]
+      suml[,!(dNl==0)] <- suml[,!(dNl==0),drop = FALSE] + sums[1:2,,drop = FALSE]
       costl[!(dNl==0)] <- costl[!(dNl==0)] + cost
     }
 

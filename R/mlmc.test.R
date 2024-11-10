@@ -141,6 +141,19 @@ mlmc.test <- function(mlmc_l, N, L, N0, eps.v, Lmin, Lmax, alpha = NA, beta = NA
     stop("if specified, parallel must be greater than zero.")
   }
 
+  # check user supplied mlmc function on fastest level for just 1 simulation is
+  # returning the correct shape of list(sums, cost)
+  res.tst <- mlmc_l(0, 1, ...)
+  if(!is.list(res.tst)) {
+    stop("user suppled mlmc sampler must return a list.")
+  } else if(!identical(sort(names(res.tst)), c("cost", "sums"))) {
+    stop("user suppled mlmc sampler must return a list with elements named sums and cost.")
+  } else if(!is.numeric(res.tst$sums) || length(res.tst$sums) != 6) {
+    stop("sums returned by user suppled mlmc sampler must be length 6.")
+  } else if(!is.numeric(res.tst$cost) || length(res.tst$cost) != 1) {
+    stop("cost returned by user suppled mlmc sampler must be length 1.")
+  }
+
   res <- within(list(), {
     N <- N
     L <- L
@@ -170,8 +183,8 @@ mlmc.test <- function(mlmc_l, N, L, N0, eps.v, Lmin, Lmax, alpha = NA, beta = NA
           x <- mlmc_l(l, dN, ...)
           c(x$sums, x$cost)
         }, l = rep(l, parallel), dN = dN, ..., mc.preschedule = FALSE, mc.cores = parallel)
-        sums <- sums + rowSums(res[1:2,]/N)
-        cst <- cst + sum(res[3,]/N)
+        sums <- sums + rowSums(res[-nrow(res),]/N)
+        cst  <- cst  +     sum(res[ nrow(res),]/N)
       }
       if(l==0) {
         kurt <- 0.0

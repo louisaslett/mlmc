@@ -1,3 +1,7 @@
+# mlmc 2.1.1
+
+* Bug fix in parallel processing for main driver and `mlmc.test` (thanks to Qian Xin, University of Bristol, for bug report).
+
 # mlmc 2.1.0
 
 * Add parameter value checks in `mlmc.test`.

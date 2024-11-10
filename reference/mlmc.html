@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">mlmc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +29,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Multi-level Monte Carlo estimation</h1>
-      <small class="dont-index">Source: <a href="https://github.com/louisaslett/mlmc/blob/v2.1.0/R/mlmc.R" class="external-link"><code>R/mlmc.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/louisaslett/mlmc/blob/master/R/mlmc.R" class="external-link"><code>R/mlmc.R</code></a></small>
       <div class="d-none name"><code>mlmc.Rd</code></div>
     </div>
 
@@ -166,10 +166,10 @@ The inclusion of the level \(l\) in the superscript \((l,n)\) indicates that the
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">mlmc</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">1000</span>, <span class="fl">0.01</span>, <span class="va">opre_l</span>, option <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $P</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.4489</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.44313</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Nl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4274476  355282  103974   22143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4257656  353933   99613   21890</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Cl</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1  4 16 64</span>
@@ -177,13 +177,13 @@ The inclusion of the level \(l\) in the superscript \((l,n)\) indicates that the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">mlmc</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">1000</span>, <span class="fl">0.01</span>, <span class="va">mcqmc06_l</span>, option <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $P</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.44118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.45051</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Nl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3049661   58324   29162    8185    3090    1152     441     163      56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2966234   58326   24428    8277    3060    1127     390     154</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Cl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1]   1   2   4   8  16  32  64 128 256</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1]   1   2   4   8  16  32  64 128</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

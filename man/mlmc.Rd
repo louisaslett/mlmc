@@ -56,7 +56,7 @@ If \code{NA} then \code{beta} will be estimated.}
 Must be \eqn{> 0} if specified.
 If \code{NA} then \code{gamma} will be estimated.}
 
-\item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel processes and compute each level estimate in parallel.}
+\item{parallel}{if an integer is supplied, R will fork \code{parallel} parallel processes and spread the simulations required at each level as evenly as possible across all cores.}
 
 \item{...}{additional arguments which are passed on when the user supplied \code{mlmc_l} function is called.}
 }

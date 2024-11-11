@@ -1,6 +1,7 @@
 # mlmc 2.1.1
 
 * Bug fix in parallel processing for main driver and `mlmc.test` (thanks to Qian Xin, University of Bristol, for bug report).
+* At the same time, improve the method of splitting simulations in parallel for the main `mlmc` driver, so that work is more evenly distributed to keep all cores busy.
 
 # mlmc 2.1.0
 

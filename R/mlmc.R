@@ -72,7 +72,7 @@
 #'        Must be \eqn{> 0} if specified.
 #'        If \code{NA} then \code{gamma} will be estimated.
 #' @param parallel
-#'        if an integer is supplied, R will fork \code{parallel} parallel processes and compute each level estimate in parallel.
+#'        if an integer is supplied, R will fork \code{parallel} parallel processes and spread the simulations required at each level as evenly as possible across all cores.
 #' @param ...
 #'        additional arguments which are passed on when the user supplied \code{mlmc_l} function is called.
 #'
@@ -87,7 +87,7 @@
 #'
 #' mlmc(2, 10, 1000, 0.01, mcqmc06_l, option = 1)
 #'
-#' @importFrom parallel mcmapply
+#' @importFrom parallel mclapply
 #' @importFrom stats lm
 #' @export
 mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha = NA, beta = NA, gamma = NA, parallel = NA, ...) {
@@ -156,16 +156,47 @@ mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha = NA, beta = NA, gamma = NA,
         }
       }
     } else if(is.numeric(parallel)) {
+      # Figure out how to distribute across cores in the most even way possible
+      # by giving the same number of sims on each level to each core
+      cores.work <- list()
+      for(i in 1:parallel) {
+        core.work <- data.frame()
+        for(l in 0:L) {
+          core.dNl <- c(rep(dNl[l+1] %/% parallel + 1, dNl[l+1] %% parallel), rep(dNl[l+1] %/% parallel, parallel - dNl[l+1] %% parallel))[i] # Spread simulation of dNl samples over parallel slots and extract for this core
+          if(core.dNl > 0)
+            core.work <- rbind(core.work,
+                               data.frame(l = l, dNl = core.dNl))
+        }
+        cores.work[[i]] <- core.work
+      }
+      rm(core.work)
+
+      # Verify the above gives the correct overall number of sims
       par.vars <- data.frame(l=0:L, dNl=dNl)[!(dNl==0),]
-      res <- mcmapply(function(l, dNl, ...) {
-        x <- mlmc_l(l, dNl, ...)
-        c(x$sums, x$cost)
-      }, l = par.vars$l, dNl = par.vars$dNl, ..., mc.preschedule = FALSE, mc.cores = parallel)
-      sums <- res[-nrow(res),,drop = FALSE]
-      cost <- res[ nrow(res),]
+      row.names(par.vars) <- NULL
+      if(!identical(par.vars, aggregate(dNl ~ l, data = do.call("rbind", cores.work), sum)))
+        stop("incorrect parallelism split, please file a bug report with example, this should never happen! https://github.com/louisaslett/mlmc/issues")
+
+      # Execute parallel simulations
+      res <- mclapply(cores.work, function(core.work, ...) {
+        if(nrow(core.work) == 0) return(data.frame())
+        res <- data.frame(l = core.work$l, sums1 = NA, sums2 = NA, cost = NA)
+        for(i in 1:nrow(core.work)) {
+          x <- mlmc_l(core.work[i,"l"], core.work[i,"dNl"], ...)
+          res[i,2:4] <- c(x$sums[1], x$sums[2], x$cost)
+        }
+        res
+      }, ..., mc.preschedule = FALSE, mc.cores = parallel)
+      # Gather results and combine sums/costs from different cores
+      res <- do.call("rbind", res)
+      res <- aggregate(cbind(sums1, sums2, cost) ~ l, data = res, sum)
+      sums <- unname(t(res[,-c(1,4),drop = FALSE]))
+      cost <- unname(res[,4])
+
+      # Update running totals
       Nl <- Nl+dNl
-      suml[,!(dNl==0)] <- suml[,!(dNl==0),drop = FALSE] + sums[1:2,,drop = FALSE]
-      costl[!(dNl==0)] <- costl[!(dNl==0)] + cost
+      suml[,res$l+1] <- suml[,res$l+1,drop = FALSE] + sums
+      costl[res$l+1] <- costl[res$l+1] + cost
     }
 
     # compute absolute average, variance and cost

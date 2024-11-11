@@ -106,6 +106,7 @@
 #'                  Lmin = 2, Lmax = 10,
 #'                  option = 1)
 #'
+#' @importFrom parallel mcmapply
 #' @importFrom stats lm
 #' @export
 mlmc.test <- function(mlmc_l, N, L, N0, eps.v, Lmin, Lmax, alpha = NA, beta = NA, gamma = NA, parallel = NA, silent = FALSE, ...) {

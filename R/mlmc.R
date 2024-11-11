@@ -88,7 +88,7 @@
 #' mlmc(2, 10, 1000, 0.01, mcqmc06_l, option = 1)
 #'
 #' @importFrom parallel mclapply
-#' @importFrom stats lm
+#' @importFrom stats lm aggregate
 #' @export
 mlmc <- function(Lmin, Lmax, N0, eps, mlmc_l, alpha = NA, beta = NA, gamma = NA, parallel = NA, ...) {
   # check parameters are acceptable

@@ -1,8 +1,8 @@
 pandoc: 3.1.11
-pkgdown: 2.1.1
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-11-12T11:00Z
+last_built: 2025-11-10T18:41Z
 urls:
   reference: https://mlmc.louisaslett.com/reference
   article: https://mlmc.louisaslett.com/articles
